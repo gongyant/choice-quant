@@ -8,6 +8,38 @@
 
 ---
 
+## 已上传的报告与数据
+
+上一轮精简上传已经带上大部分 P4–P6 的 markdown 报告、worklog 和 review bundle，例如 `v2/p4_top5_quant/reports/`、`v2/p4_top5_quant/worklog.md`、`v2/p4_top5_quant/p4_review_bundle.zip`，以及 P5、P6 下同名的 `reports/`、`worklog.md`、`p5_review_bundle.zip`、`p6_review_bundle.zip`。这次只补当时缺的明细 CSV 和 P1 复核包，约 18 MB。`predictions_registry` / `forward_registry` 里已冻结的预测行保持原样。
+
+本次新增路径：
+
+- `v2/p1_dl/review_bundle.zip`
+- `v2/p2_alpha_monetization/results/b_controls_calibration.csv`
+- `v2/p3_ai_report/results/calibration_by_year.csv`
+- `v2/p3_ai_report/results/calibration_supplement.csv`
+- `v2/p3_ai_report/results/calibration_table.csv`
+- `v2/p4_top5_quant/results/bt_holdings_e0_e1.csv`
+- `v2/p4_top5_quant/results/bt_holdings_e2.csv`
+- `v2/p4_top5_quant/results/bt_holdings_sm.csv`
+- `v2/p4_top5_quant/results/bt_summary_e0_e1.csv`
+- `v2/p4_top5_quant/results/bt_summary_e2.csv`
+- `v2/p4_top5_quant/results/bt_summary_sm.csv`
+- `v2/p4_top5_quant/results/buy_gate_e2.csv`
+- `v2/p4_top5_quant/results/buy_gate_sm.csv`
+- `v2/p4_top5_quant/results/p4_latest_top5_all.csv`
+- `v2/p4_top5_quant/results/s4_calibration.csv`
+- `v2/p5_best_top5/results/b5_buy_gate.csv`
+- `v2/p6_final_validation/results/b1_reconciliation.csv`
+- `v2/p6_final_validation/results/buy_gate.csv`
+- `v2/p6_final_validation/results/current_holdings.csv`
+- `v2/p6_final_validation/results/latest_top5.csv`
+- `v2/p6_final_validation/results/strategy_comparison.csv`
+
+继续留在本机、未进入本仓库的有：`.venv`、原始行情 parquet、`fin_raw/`，以及 `.pt` / `.pth` 模型权重。
+
+---
+
 ## 请先读
 
 - **研究排名不是买入推荐。** 模型分、`select_score`、综合分只是排序用的分数，不是上涨概率，也不是预期收益率。

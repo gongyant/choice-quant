@@ -1,0 +1,3 @@
+﻿strategy,horizon,version,status,reason,C1_t_vs_pool,C5_forward_periods
+B1,5,p6_inherits_p5_buy_criterion_v1,不通过:不构成买入依据,"回测相对股票池超额 HAC t=0.19<2; 前向到期期数=0; 即使A3相对A0显著,也不满足相对池与前向门槛。",0.19,0.0
+B0,20,,不通过:不构成买入依据,"原始低波无缓冲无约束;5日样本仅+3%净,且未过相对池与前向门槛。",,

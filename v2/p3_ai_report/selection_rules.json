@@ -1,0 +1,52 @@
+{
+ "version": "p3-rules-v1",
+ "written_at_local": "2026-10-21T19:24:27+08:00",
+ "note": "规则在计算最新排名/校准/候选之前写定;之后只能新建 v2 文件,不得改动本文件。研究规则,不是投资建议;频率是相对池均值的历史经验频率,不是概率。",
+ "universe": "P0 1498 只样本股;打分池 = P0 eligible_asof_t 规则(有效成交、>=60 日历史、20日成交额中位数>=2000万)",
+ "models_in_composite": ["HGB", "LGBM", "MLP", "GRU", "TF"],
+ "composite": "composite_pctile = 5 个冻结模型池内分位的等权平均(Ridge 与简单因子只展示,不进入综合);model_disagreement = 5 个分位的标准差(ddof=0)",
+ "trend_rule": {
+   "ma20_slope": "MA20_t / MA20_{t-5} - 1 (前复权收盘)",
+   "band": "b = max(0.05, vol20 * sqrt(20)),vol20 = 20 日日收益标准差",
+   "上涨": "r20 > +b 且 ma20_slope > 0 且 close_t > MA20_t",
+   "下跌": "r20 < -b 且 ma20_slope < 0 且 close_t < MA20_t",
+   "震荡": "其余"
+ },
+ "risk_flags": {
+   "high_vol": "vol20 池内分位 >= 0.80",
+   "low_liquidity": "amt20 < 1 亿元",
+   "st_or_delist_risk": "现名含 ST/*ST 或 状态为终止/暂停上市",
+   "limit_up_locked_t": "最新交易日收盘涨停封板(次日难以买入)",
+   "limit_down_locked_t": "最新交易日收盘跌停封板",
+   "consec_limit_down": "最近 5 个交易日跌停封板 >= 2 次",
+   "suspended_t": "最新交易日无有效成交",
+   "needs_access": "科创板/北交所(需投资者适当性权限,仅标注不排除)"
+ },
+ "risk_level": "高 = st_or_delist_risk 或 consec_limit_down 或 (high_vol 且 low_liquidity);中 = high_vol 或 low_liquidity 或 limit_down_locked_t;低 = 其余",
+ "calibration": {
+   "source": "p1_dl/historical_predictions_all_models.parquet 的 HGB/LGBM/MLP/GRU/TF 历史 OOS 分数(walk-forward,信号日 2022-07~2026-09),每个信号日重算 5 模型池内分位并平均",
+   "bins": 10,
+   "targets": "5 日:P0 标签口径(t+1 收盘 -> t+6 收盘,相对同日池均值);20 日:t+1 收盘 -> t+21 收盘,相对同日池均值,用 P0 复权价独立计算",
+   "thresholds": {"5d": 0.02, "20d": 0.05},
+   "classes": "跑赢: rel > +x;持平: |rel| <= x;跑输: rel < -x",
+   "absolute_quantiles": [0.1, 0.5, 0.9],
+   "uncertainty": "按信号日的块自助法(5 日:块长 4 个信号;20 日:块长 8 个信号),B = 2000;20 日另做非重叠子样本(每 4 个信号取 1 个)独立验证",
+   "credibility": "某组 跑赢 频率与全样本基准之差的 95% 区间包含 0 -> '预测可信度低';否则 '有历史统计支持(仍可能失效)'",
+   "by_year": "分年度给出各组 跑赢 频率,检查稳定性"
+ },
+ "top5_rule": {
+   "filters": ["eligible_asof_t", "amt20 >= 1e8", "非 st_or_delist_risk", "非 limit_up_locked_t", "非 suspended_t", "非 limit_down_locked_t", "非 consec_limit_down",
+               "至少 4/5 个模型分位 >= 0.70", "model_disagreement <= 0.15", "r5 <= +0.15 且 r20 <= +0.30(不过度追涨)", "非 (趋势=下跌 且 r5 < -0.08)(不自动抄跌)"],
+   "score": "sel = composite_pctile - 0.10 * vol20_pctile - 0.05 * [r20 > 0.15] ;校准组 跑赢 频率不显著高于基准的,结论仍标注'预测可信度低'",
+   "order": "sel 降序取前 5;同分按 amt20 降序",
+   "not_used": "不只按 Top50 次数排序"
+ },
+ "avoid_rule": {
+   "pool": "最新交易日有有效成交或处于停牌中的样本股",
+   "candidates": "(eligible 且 composite_pctile <= 0.20 且 至少 4/5 模型分位 <= 0.30) 或 st_or_delist_risk 或 consec_limit_down",
+   "score": "avoid = (1 - composite_pctile,缺失记 0.5) + 0.5*high_vol + 0.5*low_liquidity + 1.0*st_or_delist_risk + 1.0*consec_limit_down + 0.5*limit_down_locked_t",
+   "order": "avoid 降序取前 5"
+ },
+ "conclusion_labels": ["继续观察", "暂不买入"],
+ "disclaimer": "研究排名与历史经验统计,不是买入推荐;模型分数不是概率或收益;P2 结论:信号未被证明可在成本后变现。"
+}

@@ -1,0 +1,10 @@
+tx_qfq_drop3 signal 0 2022-07-01 19 s
+tx_qfq_drop3 signal 25 2023-01-03 56 s
+tx_qfq_drop3 signal 50 2023-07-12 109 s
+tx_qfq_drop3 signal 75 2024-01-12 179 s
+tx_qfq_drop3 signal 100 2024-07-23 239 s
+tx_qfq_drop3 signal 125 2025-01-24 283 s
+tx_qfq_drop3 signal 150 2025-08-04 326 s
+tx_qfq_drop3 signal 175 2026-02-05 371 s
+tx_qfq_drop3 signal 200 2026-08-14 423 s
+done tx_qfq_drop3 438 s; periods 207

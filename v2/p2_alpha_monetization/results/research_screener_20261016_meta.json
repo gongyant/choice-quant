@@ -1,0 +1,70 @@
+{
+ "asof": "2026-10-16",
+ "n_rows": 1498,
+ "n_eligible": 1178,
+ "tf3_signal_date": "2026-09-28",
+ "tf3_seeds": [
+  42,
+  43,
+  44
+ ],
+ "low_liq_threshold": 50000000.0,
+ "a2": {
+  "HGB": {
+   "params": "A2_t0.5_c0.03_doff",
+   "beta_hat": 0.00269660827257034,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 0.9999999999999999,
+   "n_names": 100.0,
+   "success": 1.0
+  },
+  "LGBM": {
+   "params": "A2_t1.0_c0.03_doff",
+   "beta_hat": 0.002720301951041582,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 1.0,
+   "n_names": 95.0,
+   "success": 1.0
+  },
+  "Ridge": {
+   "params": "A2_t0.5_c0.05_doff",
+   "beta_hat": 0.0017655712488509148,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 0.9999504544060827,
+   "n_names": 92.0,
+   "success": 1.0
+  },
+  "MLP": {
+   "params": "A2_t1.0_c0.03_doff",
+   "beta_hat": 0.002747901846590688,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 0.9999999999999997,
+   "n_names": 93.0,
+   "success": 1.0
+  },
+  "GRU": {
+   "params": "A2_t1.0_c0.03_doff",
+   "beta_hat": 0.0023557004862339963,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 0.7476381526538431,
+   "n_names": 100.0,
+   "success": 1.0
+  },
+  "TF": {
+   "params": "A2_t1.0_c0.03_doff",
+   "beta_hat": 0.00248035480344572,
+   "n_matured": 206.0,
+   "n_cand": 100.0,
+   "sum_w": 1.0,
+   "n_names": 98.0,
+   "success": 1.0
+  }
+ },
+ "seconds": 10.7,
+ "note": "A2 weights: research simulation from an empty book with the nested-selected parameters of the last block and the C2 explicit cost model (cost inputs as of 2026-10-16). Not a recommendation."
+}

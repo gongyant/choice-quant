@@ -1,0 +1,49 @@
+{
+ "created_at": "2026-10-18T23:14:29+08:00",
+ "asof_signal_date": "2026-10-16",
+ "status": "FROZEN: this version's predictions must not be changed or re-run with different parameters. Later retrained models are NEW versions and must be registered separately.",
+ "protocol": {
+  "label": "P0 标签:信号日t收盘后给出排名;t+1收盘(2026-10-19)买入 -> t+6收盘(2026-10-26)卖出的复权收益,减去同日合格池等权均值(相对收益)",
+  "first_label_available_after": "2026-10-26 收盘后(需要 2026-10-19 起的新数据;2026-10-16 之前的数据不得用于评估本冻结版本)",
+  "evaluation": "预先声明:Rank IC(分数 vs 相对收益)、Top50 等权相对收益、扣 0.30% 往返成本后的净超额、同制度等权基准;报告 HAC(4)/bootstrap,不在看到结果后改模型/参数/阈值;6个模型存在多重比较,不做事后择优",
+  "min_periods_note": "至少累积 ≥30 个独立5日期(约 150 个交易日,2027-05 前后)才有初步统计功效;此前仅描述",
+  "caveats": [
+   "研究排名≠买入建议;score 非概率非收益",
+   "样本为1500只分层抽样,新上市股票不在其中",
+   "涨停封板标记的股票次日大概率无法买入(latest_limit_up_locked)"
+  ]
+ },
+ "n_rows": 300,
+ "models": [
+  "HGB|p1A1-2026-10-16-seed42-train2023-10-17_2026-09-22",
+  "LGBM|p1A1-2026-10-16-seed42-train2023-10-17_2026-09-22",
+  "Ridge|p1A1-2026-10-16-seed42-train2023-10-17_2026-09-22",
+  "MLP|mlp_latest(3seeds mean) train_end 2026-06-16 val_end 2026-09-22",
+  "GRU|gru_latest(3seeds mean,GPU) train_end 2026-06-16 val_end 2026-09-22",
+  "TF|tf_latest(seed42 only) train_end 2026-06-16 val_end 2026-09-22"
+ ],
+ "sha256": {
+  "p1_dl\\latest_all_stocks_20261016_v2.csv": "70ccb2ff00b0b4571f742a64f56a53e68175c68ab84115b282ea33d4400ea313",
+  "p1_dl\\latest_all_stocks_20261016.csv": "c58c5aee30213bd2e57593c2f1978e849ed53c70dab50bc181714a6c1ba9aeb7",
+  "p1_dl\\scores\\dl_mlp_scores_20261016.csv": "5a6159861204b2e472702327b70a2068efa5d928b78dd230ad916858b2246656",
+  "p1_dl\\scores\\dl_gru_scores_20261016.csv": "472185f4623a8612ff7315f77d0cc8c6c130d8933aec452ca36b85b3ef94f36a",
+  "p1_dl\\scores\\dl_tf_scores_20261016.csv": "3a45f8dca48db3c2ebdbc9d5ce7538f785e763e839e265339f027ef3e9f7bbda",
+  "p1_dl\\scores\\score_run_info.json": "de1db8dd072763276b545a4050c03a3cd50b841f6c66408f6204f70f1ae17c1e",
+  "p1_dl\\models\\model_meta_2026-10-16.json": "de1db8dd072763276b545a4050c03a3cd50b841f6c66408f6204f70f1ae17c1e",
+  "p1_dl\\models\\HGB_frozen_2026-10-16.joblib": "705cdc9e3047cb2448196a64eee7949ea9cda6f55b0b828132e21e8591cd743e",
+  "p1_dl\\models\\LGBM_frozen_2026-10-16.joblib": "e2a2a7882d2250c9ca392c2644c04ef58672d54e577abeeb1f02082fefe683a2",
+  "p1_dl\\models\\Ridge_frozen_2026-10-16.joblib": "6e6976771f9a89d7a324d3b73e3d809d950024ae6f24ddc2ec4982986fec04af",
+  "p1_dl\\dl\\checkpoints\\gru\\gru_latest_s42_r999.pt": "b7f84efae6a842f41bc330c3e3a984f6cbfe9b80850427c6f90b3378fcfec2c3",
+  "p1_dl\\dl\\checkpoints\\gru\\gru_latest_s43_r999.pt": "62759593be4942ba2709aa7ca26f97b7c00bd572788a413d0537b0487d77c14d",
+  "p1_dl\\dl\\checkpoints\\gru\\gru_latest_s44_r999.pt": "dcf9d1b5bda74abf3eb60aa4791fe1e88acc919a14248fdf7ff5d524f33ed8b6",
+  "p1_dl\\dl\\checkpoints\\mlp\\mlp_latest_s42_r999.pt": "df5071face86caf1529f3ea4cb882bce9735c611b9eba48ab7c25cfab706809a",
+  "p1_dl\\dl\\checkpoints\\mlp\\mlp_latest_s43_r999.pt": "f1335575a2523b6aae0cf19786d7790b1cbf2b7e0d451dcb187a479e8f8980a7",
+  "p1_dl\\dl\\checkpoints\\mlp\\mlp_latest_s44_r999.pt": "8cb991dc9e1809dc54137fc6801feebbb18ebfa684f6495e7cadee8a33e37d4f",
+  "p1_dl\\dl\\checkpoints\\tf\\tf_latest_s42_r999.pt": "c7e264a58e9c46c7b4cda85dd4f87dc533159e706eb3daf526c3713409d6c6a0",
+  "p0\\p0lib.py": "63e45932c310ef22613118a6dfcf34506a50f047dc0f21d18b56bd032299d427",
+  "p1_dl\\p1lib.py": "76cd32ebd2b22006d5f96cbd1708c5dab975583ed89399a5da0385f52c3e2aa8",
+  "p1_dl\\dl\\dl_common.py": "3524dd9281d739638e785f2afea61d6bda4031272c6d285f17ac361eaeb27f85",
+  "p1_dl\\dl\\dl_mlp.py": "f537f2c967ba9ee1e93f3e86213c59d77d34a965ff3269668f3425da3c858151",
+  "p1_dl\\dl\\dl_seq.py": "d4da918d7aee7924f8775c7de4ed6988382d22e5c31ab866443c2440ba9a9c62"
+ }
+}

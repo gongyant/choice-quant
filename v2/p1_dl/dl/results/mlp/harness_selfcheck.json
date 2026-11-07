@@ -1,0 +1,10 @@
+{
+ "harness_selfcheck_maxdiff_c30": {
+  "HGB": 9.8879238130678e-17,
+  "LGBM": 9.8879238130678e-17,
+  "Ridge": 9.71445146547012e-17,
+  "Momentum20": 9.71445146547012e-17,
+  "Reversal5": 9.8879238130678e-17
+ },
+ "note": "P0 file vs re-simulation of the P0 Top50 sets with this harness; 0 => identical engine/cost convention"
+}

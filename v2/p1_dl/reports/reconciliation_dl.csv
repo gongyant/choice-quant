@@ -1,0 +1,34 @@
+﻿check,model,max_abs_diff,note
+net period return c30 (rerun of simulate from OOS Top50 vs dl results period_returns.csv),MLP,9.8879238130678e-17,207 periods
+turnover_value (30bps),MLP,5.551115123125783e-17,
+cash_frac_post (30bps),MLP,9.8879238130678e-17,
+buy_filled (30bps),MLP,0.0,
+n_hold (30bps),MLP,0.0,
+order log identical to B orders_*_cost30bps.csv,MLP,0.0,rows 14361 vs 14361
+IC per period (recomputed from OOS scores vs period_returns),MLP,9.71445146547012e-17,
+RankIC per period,MLP,9.71445146547012e-17,
+EqualWeight net ret c30 vs P0 file,MLP,0.0,
+buy_status FILLED/REJECTED count vs B order log BUY rows,MLP,0.0,7194 vs 7194
+realized_ret_5d equals A2 (HGB rows) label,MLP,0.0,
+net period return c30 (rerun of simulate from OOS Top50 vs dl results period_returns.csv),GRU,9.71445146547012e-17,207 periods
+turnover_value (30bps),GRU,1.1102230246251565e-16,
+cash_frac_post (30bps),GRU,9.93129189996722e-17,
+buy_filled (30bps),GRU,0.0,
+n_hold (30bps),GRU,0.0,
+order log identical to B orders_*_cost30bps.csv,GRU,0.0,rows 15131 vs 15131
+IC per period (recomputed from OOS scores vs period_returns),GRU,9.80118763926896e-17,
+RankIC per period,GRU,9.77950359581925e-17,
+EqualWeight net ret c30 vs P0 file,GRU,0.0,
+buy_status FILLED/REJECTED count vs B order log BUY rows,GRU,0.0,7513 vs 7513
+realized_ret_5d equals A2 (HGB rows) label,GRU,0.0,
+net period return c30 (rerun of simulate from OOS Top50 vs dl results period_returns.csv),TF,9.8879238130678e-17,207 periods
+turnover_value (30bps),TF,1.1102230246251565e-16,
+cash_frac_post (30bps),TF,9.80118763926896e-17,
+buy_filled (30bps),TF,0.0,
+n_hold (30bps),TF,0.0,
+order log identical to B orders_*_cost30bps.csv,TF,0.0,rows 13950 vs 13950
+IC per period (recomputed from OOS scores vs period_returns),TF,9.465084965798454e-17,
+RankIC per period,TF,9.952975943416931e-17,
+EqualWeight net ret c30 vs P0 file,TF,0.0,
+buy_status FILLED/REJECTED count vs B order log BUY rows,TF,0.0,6920 vs 6920
+realized_ret_5d equals A2 (HGB rows) label,TF,0.0,

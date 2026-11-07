@@ -1,0 +1,24 @@
+{
+ "version": "p3-rules-v2",
+ "written_at_local": "2026-10-21T20:18:34+08:00",
+ "based_on": "selection_rules.json (p3-rules-v1, sha256 前缀 0B9CDEF5,不改动)",
+ "note": "v2 在任何 v2 结果计算之前写定并登记到 rules_manifest.jsonl(时间戳+sha256)。阈值按风险控制常识事先给定,不用 2026-10 结果调参;无论历史检验结果如何,本版规则都不再修改(要改只能另建 v3)。研究规则,不是投资建议。",
+ "inherits": "v1 的 universe / composite / trend_rule / risk_flags / risk_level / calibration / top5 过滤与 sel 打分 / avoid_rule 全部原样继承",
+ "top5_rule_changes": {
+  "T1_downtrend_to_watch": "r20 < -0.15 且 ma20_slope_5d < 0 -> 不进 Top5,进入'下跌观察名单'(不做买入候选)。依据:v1 首批 3/5 只为下跌趋势股,模型本身偏好近期下跌(反转),趋势未企稳时存在继续下跌风险;-15% 取自常见'中期回撤'量级,事先给定。",
+  "T2_no_chase_r20": "r20 > +0.20 -> 排除(v1 为 +0.30)。依据:防止追高;取 v1 阈值的 2/3,事先给定。",
+  "T3_no_chase_limit_up": "最近 5 个交易日涨停封板次数 >= 2 -> 排除。依据:连续涨停后买入难成交且波动极大,与 v1 的'连续跌停'对称。",
+  "unchanged": "v1 其余过滤(amt20>=1e8、非 ST、非 t 日涨停/跌停封板/停牌、非连续跌停、>=4/5 模型分位>=0.70、分歧<=0.15、r5<=0.15、非(下跌且 r5<-0.08))与 sel 打分、排序保持不变",
+  "fewer_than_5": "满足条件不足 5 只时如实少给,不放宽、不硬凑"
+ },
+ "avoid_rule": "与 v1 相同(不改)",
+ "watch_list": "满足 v1 全部过滤与打分、仅因 T1 被排除的股票,按 sel 降序列出至多 5 只,结论固定为'暂不买入(下跌观察)'",
+ "historical_check_protocol": {
+  "design_period": "2022-07-01 ~ 2024-12-31 信号日(用于检验每条约束是否改善 跑输比例 / 均值相对收益);2025-01 ~ 2026-09 只做探索性复核(这段已被前期反复使用,不是盲测)",
+  "method": "历史 OOS 5 模型分位(p1_dl/historical_predictions_all_models.parquet)+ 当日已知特征;在'通过 v1 其余过滤的高分股'中,比较被某条约束排除的股票与保留股票的 5 日相对池均值收益:跑输(< -2%)比例、均值、中位数;并比较 v1/v2 历史逐期 Top5",
+  "historical_limitations": "历史时点 ST 状态不可得(历史回放不应用 ST 过滤);其余过滤按当日数据复现",
+  "decision": "检验只用于报告,规则不因检验结果改动"
+ },
+ "costs_for_history": "逐期 Top5 等权、持有 5 日(P0 标签口径);成本前 + 成本后:往返 0.30%(P0/P2 flat C1 口径)与 0.60% 压力情形;对比全池平均与三因子(F3)基线 Top5",
+ "disclaimer": "研究排名与历史经验统计,不是买入推荐;分数不是概率或收益;P2 结论:信号未被证明可在成本后变现。"
+}

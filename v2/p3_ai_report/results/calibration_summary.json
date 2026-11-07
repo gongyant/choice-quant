@@ -1,0 +1,16 @@
+{
+ "n_signal_dates": 207,
+ "first": "2022-07-01",
+ "last": "2026-09-28",
+ "n_obs": 238781,
+ "n_dates_20d": 205,
+ "composite_rankic_5d_mean": 0.08344789824440597,
+ "composite_rankic_5d_pos_share": 0.7439613526570048,
+ "composite_rankic_20d_mean": 0.10884987799606956,
+ "composite_rankic_20d_pos_share": 0.8097560975609757,
+ "thresholds": {
+  "d5": 0.02,
+  "d20": 0.05
+ },
+ "note": "经验频率 = 历史上该组股票相对池均值 跑赢/持平/跑输 的比例;不是概率,不保证未来;2022-07 以后样本已被 P0/P1/P2 反复使用,属探索性"
+}

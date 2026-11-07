@@ -1,0 +1,19 @@
+{
+ "END": "2026-10-21",
+ "calendar_source": "akshare.tool_trade_date_hist_sina",
+ "new_trade_dates": [
+  "2026-10-19",
+  "2026-10-20",
+  "2026-10-21"
+ ],
+ "n_codes": 1498,
+ "n_fetched": 1498,
+ "n_with_new_rows": 1286,
+ "overlap_close_maxabs_max": 0.0,
+ "overlap_amount_maxrel_p99": 6.950686219020893e-06,
+ "volume_mult_counts": {
+  "1.0": 1410,
+  "100.0": 88
+ },
+ "merged_at": "2026-10-21T20:01:54"
+}

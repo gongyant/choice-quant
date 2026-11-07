@@ -1,0 +1,148 @@
+{
+ "declared_at": "2026-10-19 13:45 (Asia/Singapore)",
+ "note": "P1 Transformer architecture/checkpoints/scores are untouched (imported read-only). T0 seed 42 = frozen P1 scores (reproduction check: c_repro_r000.json). All other runs are new, written to c_checkpoints/.",
+ "common": {
+  "signals": 207,
+  "first_signal": "2022-07-01",
+  "retrain_every_signals": 4,
+  "n_retrains": 52,
+  "window_years": 3,
+  "input": "60-day x (6 value channels + mask), P1 normalisation",
+  "model": "P1 TFNet (d64,h4,ff128,L2,pre-LN,dropout .2, last-step pooling)",
+  "optim": "AdamW lr1e-3 wd1e-4 batch2048(rows) clip1.0 max_epochs12 patience3 best-epoch restored",
+  "target": "winsorised pool-demeaned relative return, divided by training std per head",
+  "score_head": "the 5-day head (index of horizon 5)"
+ },
+ "variants": {
+  "T0": {
+   "heads": [
+    5
+   ],
+   "loss": "mse",
+   "geom": "p1",
+   "persist": 0.0,
+   "desc": "P1 baseline recipe (seed 42 = frozen P1 scores)"
+  },
+  "T0G": {
+   "heads": [
+    5
+   ],
+   "loss": "mse",
+   "geom": "g20",
+   "persist": 0.0,
+   "desc": "baseline with the 20-day-label purge geometry (control for the geometry change)"
+  },
+  "T1": {
+   "heads": [
+    5
+   ],
+   "loss": "rank",
+   "geom": "p1",
+   "persist": 0.0,
+   "desc": "5d head, pairwise rank loss instead of MSE (only the loss changes; day-grouped batches are implied)"
+  },
+  "T2": {
+   "heads": [
+    1,
+    5,
+    10,
+    20
+   ],
+   "loss": "mse",
+   "geom": "g20",
+   "persist": 0.0,
+   "desc": "multi-horizon heads, MSE per head, 20d purge"
+  },
+  "T3": {
+   "heads": [
+    1,
+    5,
+    10,
+    20
+   ],
+   "loss": "rank",
+   "geom": "g20",
+   "persist": 0.0,
+   "desc": "multi-horizon heads, pairwise rank loss per head, 20d purge"
+  },
+  "T4": {
+   "heads": [
+    5
+   ],
+   "loss": "mse",
+   "geom": "p1",
+   "persist": 0.5,
+   "desc": "baseline + score-persistence penalty (lag 5 trading days)"
+  }
+ },
+ "geometry": {
+  "p1": {
+   "val_end": "i-12",
+   "val_days": 60,
+   "train_val_gap": 10
+  },
+  "g20": {
+   "val_end": "i-27",
+   "val_days": 60,
+   "train_val_gap": 25
+  },
+  "derivation": "label of row d spans close(d+1)->close(d+1+h). Features look BACKWARD only (60-day window), so the 60-day look-back does not add to the embargo. P1 keeps margin 6 between the latest validation label end and the signal date (hi+6=i-6) and margin 4 between the last train label end and val start (te+6=vs-4). For Hmax=20 the same margins need hi=i-12-15, gap=10+15 (every label of every head ends <= i-6 and train labels end <= vs-4)."
+ },
+ "rank_loss": "per trading day: sum_{i,j: r_i>r_j} (r_i-r_j)*softplus(-(s_i-s_j)) / sum (r_i-r_j), r = within-day percentile rank of the winsorised label; batches = 6 whole trading days; validation criterion = the same loss on the 60 validation days",
+ "persistence": "loss += 0.5 * mean[(s_d,j - s_d-5,j)^2] / var_batch(s_d) (variance not detached: scale-invariant) over rows whose d-5 row has a valid bar (primary head only); single pre-declared lambda, not tuned",
+ "seeds": {
+  "T0": [
+   42,
+   43,
+   44
+  ],
+  "others": [
+   42,
+   43,
+   44
+  ],
+  "extra_if_time": [
+   45,
+   46
+  ],
+  "lag_lgbm": [
+   42,
+   43,
+   44
+  ]
+ },
+ "lag_lgbm": {
+  "features": "the same normalised 60x7 window flattened (420 columns, lag-stacked, incl. mask channel)",
+  "params": "frozen-LGBM hyper-parameters (num_leaves15, lr.05, min_child200, subsample.8/1, colsample.8, lambda1) with early stopping on the TF validation segment (patience 20, max 400 trees)",
+  "split": "same P1 geometry / retrain blocks"
+ },
+ "pairs": [
+  "T1-T0",
+  "T4-T0",
+  "T0G-T0",
+  "T2-T0G",
+  "T3-T2",
+  "T3-T0",
+  "T3-T1",
+  "lagLGBM-T0",
+  "smoothed(T0)-T0 [diagnostic: post-hoc 0.5/0.5 smoothing of the T0 rank score with the previous signal date; uses past scores only]"
+ ],
+ "metrics": [
+  "RankIC mean/HAC t",
+  "rank stability (Spearman of scores across consecutive signal dates over the common pool)",
+  "Top50 overlap",
+  "A0 one-way turnover/period",
+  "A0 net return (C1 flat 0.30%, C2 explicit OHLCV costs; P0 simulator via P2-B simulate_ext)",
+  "alpha vs 5 P2-A factors (HAC t)",
+  "seed mean/std/range",
+  "paired differences with HAC t and 5-period block bootstrap CI"
+ ],
+ "compute_reduction": {
+  "reason": "measured: one 52-block Transformer run takes ~35 min of GPU time (P1: 2059 s); concurrent processes only time-slice the single GPU (about 1.2x total throughput) and Windows commit memory allows 2 workers; 17 full runs would need ~9 h. Declared before any variant result exists.",
+  "T0_seeds": "43 and 44 run on ALL 52 retrain blocks (seed 42 = frozen P1)",
+  "ablation_variants": "T1,T2,T3,T4,T0G are trained on the FIRST 26 retrain blocks only (signals 0-103, 2022-07 to ~2024-08), seeds 42,43 first and 44 if time allows; all variant-vs-baseline paired tests use exactly these 104 signals (T0 and lag-LGBM are sub-selected to the same signals; the full-207 T0 results are reported separately)",
+  "block_choice": "first 26 blocks = contiguous in time (keeps consecutive-signal stability transitions across retrain boundaries) and chosen BEFORE any variant result"
+ },
+ "compute_policy": "single training > 30 min -> block checkpoints (done: one npz per 4-signal retrain block), background workers, worklog every 20-30 min. Seeds/variants limited if compute is short; any reduction is stated in the report.",
+ "exploratory": "2025-2026 is re-used data; every number is exploratory. No selection on the evaluation period."
+}

@@ -1,0 +1,19 @@
+{
+ "version": "p4-select-v1",
+ "written_before_evaluation": true,
+ "candidate_model": "E2reg(量价+基本面 LGBM 回归);同一期限的模型用于同一期限(h5->5日,h20->20日)",
+ "candidates": "可交易过滤后按模型分数取 Top20",
+ "tradable_filter": "eligible_asof_t;t日有成交;t日收盘未涨停封板;amt20>=1e8(流动性下限);非ST代理;回测引擎另外跳过 t+1 停牌/开盘涨停",
+ "risk_constraints": {"industry_cap": "同一 industry_l2 最多 2 只", "volatility_cap": "vol20 在当日股票池分位 <= 0.80", "drawdown_cap": "收盘价距60日最高收盘回撤 > -35%,且 r20 > -25%"},
+ "permissions": "科创板/创业板不排除,只标注(实际账户权限未知)",
+ "variants": {
+  "S1_fixed": "每期从 Top20 中按排名取前 5 只满足约束的股票",
+  "S2_buffer": "已持有股票只要仍满足约束,且在可交易池的排名 <= 40 就继续持有;其余仓位从 Top20 中补满 5 只",
+  "S3_blend_fixed": "综合分 = 0.5*模型分位 + 0.5*低波动分位(-vol20),再执行 Top20 -> 约束 -> 固定 Top5",
+  "S4_blend_buffer": "S3 的综合分 + S2 的缓冲区规则"
+ },
+ "holdings": "5 个等权槽位,不足 5 只时持现金;成本为往返 0.30%,同批次1引擎",
+ "buy_criteria": "某个方案、某个期限满足以下全部条件才算'满足买入标准':(1) 全期 Top5 每期净超额相对股票池的 t>=2;(2) 设计期和探索期的净超额都 > 0;(3) 全期净累计收益同时高于 P3 v2 冻结基线和低波动因子。另外,当日入选股票还必须满足上面所有约束。任一条不满足,就显示'当前没有足够可信的买入机会',模拟组合持现金。",
+ "latest_report_variant": "取全期 5 日净超额最高的方案(事后选择,只用于展示;是否买入仍由 buy_criteria 决定)",
+ "no_change_after_results": "看到结果后不修改本规则;要改只能另建 v2"
+}

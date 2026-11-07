@@ -1,0 +1,31 @@
+﻿signal_date,strategy,horizon,code,name,rules_sha256,model_version,sim_weight,planned_entry,planned_exit,registry_file,source
+2026-10-22,B1,20,300015,爱尔眼科,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B1_h20.csv,P5_frozen
+2026-10-22,B1,20,600905,三峡能源,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B1_h20.csv,P5_frozen
+2026-10-22,B1,20,000895,双汇发展,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B1_h20.csv,P5_frozen
+2026-10-22,B1,20,601800,中国交建,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B1_h20.csv,P5_frozen
+2026-10-22,B1,20,601818,光大银行,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B1_h20.csv,P5_frozen
+2026-10-22,B1,5,300015,爱尔眼科,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B1_h5.csv,P5_frozen
+2026-10-22,B1,5,600905,三峡能源,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B1_h5.csv,P5_frozen
+2026-10-22,B1,5,000895,双汇发展,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B1_h5.csv,P5_frozen
+2026-10-22,B1,5,601800,中国交建,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B1_h5.csv,P5_frozen
+2026-10-22,B1,5,601818,光大银行,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,lowvol_v1(无模型),0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B1_h5.csv,P5_frozen
+2026-10-22,B3,20,600515,海南机场,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B3_h20.csv,P5_frozen
+2026-10-22,B3,20,300861,美畅股份,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B3_h20.csv,P5_frozen
+2026-10-22,B3,20,000987,越秀资本,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B3_h20.csv,P5_frozen
+2026-10-22,B3,20,603799,华友钴业,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B3_h20.csv,P5_frozen
+2026-10-22,B3,20,002250,联化科技,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+20交易日开盘,p5_pred_20261022_B3_h20.csv,P5_frozen
+2026-10-22,B3,5,601066,中信建投,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B3_h5.csv,P5_frozen
+2026-10-22,B3,5,601318,中国平安,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B3_h5.csv,P5_frozen
+2026-10-22,B3,5,600515,海南机场,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B3_h5.csv,P5_frozen
+2026-10-22,B3,5,300015,爱尔眼科,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B3_h5.csv,P5_frozen
+2026-10-22,B3,5,002448,中原内配,p5:17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",0.2,2026-10-23 开盘,entry+5交易日开盘,p5_pred_20261022_B3_h5.csv,P5_frozen
+2026-10-23,B1,5,300015,爱尔眼科,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+5交易日开盘,p6_pred_20261023_B1_h5.csv,P6
+2026-10-23,B1,5,600905,三峡能源,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+5交易日开盘,p6_pred_20261023_B1_h5.csv,P6
+2026-10-23,B1,5,000895,双汇发展,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+5交易日开盘,p6_pred_20261023_B1_h5.csv,P6
+2026-10-23,B1,5,601800,中国交建,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+5交易日开盘,p6_pred_20261023_B1_h5.csv,P6
+2026-10-23,B1,5,601818,光大银行,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+5交易日开盘,p6_pred_20261023_B1_h5.csv,P6
+2026-10-23,B0,20,000895,双汇发展,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+20交易日开盘,p6_pred_20261023_B0_h20.csv,P6
+2026-10-23,B0,20,600905,三峡能源,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+20交易日开盘,p6_pred_20261023_B0_h20.csv,P6
+2026-10-23,B0,20,601800,中国交建,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+20交易日开盘,p6_pred_20261023_B0_h20.csv,P6
+2026-10-23,B0,20,601818,光大银行,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+20交易日开盘,p6_pred_20261023_B0_h20.csv,P6
+2026-10-23,B0,20,300015,爱尔眼科,455fd1a695df56457fc31ae8dee511c66ea5a7047c09a1b43e12a89deab13939,lowvol_v1,0.2,2026-10-24 开盘,entry+20交易日开盘,p6_pred_20261023_B0_h20.csv,P6

@@ -1,0 +1,10 @@
+{
+ "version": "p5_rules_v1",
+ "engine": "p4lib.backtest",
+ "filters": "elig(10-21)&traded 10-22&not close limit-up&amt20(10-21)>=1e8&not ST proxy&not current ST",
+ "constraints": "Top20 -> volp<=0.8, dd60>-35%, r20>-25%, <=2 per industry_l2",
+ "buffer": "keep previous simulated holdings while rank<40 (first live date: no previous holdings)",
+ "B1": "score = -vol20 (low-vol)",
+ "B3": "score = 0.5*pct(E2reg) + 0.5*pct(low-vol)",
+ "E2_note": "E2reg model = P4 frozen final model; its score is the 10-21 latest prediction (features as of 10-21, labels matured). 10-22 features NOT rebuilt -> E2 half is one day stale (disclosed)."
+}

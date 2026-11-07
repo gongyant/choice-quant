@@ -1,0 +1,6 @@
+{
+ "harness_selfcheck_maxdiff_c30": {
+  "HGB": 9.8879238130678e-17,
+  "LGBM": 9.8879238130678e-17
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "definitions": "P5 Batch A v2 (corrected t17u definitions). Old a1_* files are kept untouched (labelled 'v1 assumed defs'); this writes a1v2_*.\nB0 = raw low-vol Top5 (tradable filter only, no constraints, no buffer)\nB1 = pure low-vol factor + SAME constraints + SAME buffer as S4 (Top20 -> volp<=0.8, dd60>-35%, r20>-25%, <=2/industry_l2 -> keep held while rank<40)\nB2 = E2 LightGBM (E2reg) score + same constraints + same buffer\nB3 = S4 = 0.5*pct(E2reg) + 0.5*pct(low-vol) + same constraints + same buffer\nMerger delistings: positions the engine leaves MARKED_LAST_CLOSE_UNSOLD are re-valued at the swap terms (base) when the code is a known merger;\nnon-merger delistings keep the engine's last-traded-close value. Sensitivity: all-last-price / swap at listing-day open / non-merger -100%. EXPLORATORY.",
+ "mergers": {
+  "002013": {
+   "name": "中航机电",
+   "acquirer": "600372",
+   "acquirer_name": "中航电子(现中航机载)",
+   "ratio": 0.6647,
+   "record_date": "2023-03-16",
+   "new_share_list_date": "2023-04-14",
+   "acq_close_record": 17.56,
+   "acq_open_listing": 17.25,
+   "acq_price_source": "Eastmoney push2his 600372 不复权日K: 2023-03-16 收 17.56, 2023-04-14 开 17.25(600372 不在合格池缓存内)",
+   "source": "http://static.cninfo.com.cn/finalpage/2023-03-17/1216135561.PDF (终止上市公告: 1:0.6647, 股权登记日 2023-03-16, 3-17 摘牌)"
+  }
+ },
+ "n_marked": 1,
+ "v1_files_kept": "a1_*.csv = v1 (assumed defs: B0=pool,B1=raw lowvol,B2=lowvol+cons+buffer); a1v2_* = corrected t17u defs"
+}

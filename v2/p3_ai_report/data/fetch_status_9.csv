@@ -1,0 +1,3 @@
+﻿code,exchange,source,status,rows,factor_status,error,fetched_at
+003033,SZ,tencent.stock_zh_a_hist_tx(adjust='') [p3 incremental],ok,31,ok,,2026-10-21T20:01:22
+300200,SZ,tencent.stock_zh_a_hist_tx(adjust='') [p3 incremental],ok,31,ok,,2026-10-21T20:01:26

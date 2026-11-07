@@ -1,0 +1,6 @@
+codes 188 END 20261021
+19:36:59 0/188 done files=214 consec_fail=0
+19:49:53 50/188 done files=475 consec_fail=0
+19:54:10 100/188 done files=870 consec_fail=0
+19:56:22 150/188 done files=1277 consec_fail=0
+finished 1269 s; ok files 1477 

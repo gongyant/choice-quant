@@ -1,0 +1,38 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.7.0 -- D:\choice_quant_starter\.venv\Scripts\python.exe
+rootdir: D:\choice_quant_starter\v2\p1_dl
+plugins: anyio-4.15.1, platformdirs-4.13.4
+collecting ... collected 30 items
+
+tests/test_dl_tf.py::test_architecture_matches_preregistration PASSED    [  3%]
+tests/test_dl_tf.py::test_attention_mask_hides_suspended_days PASSED     [  6%]
+tests/test_dl_tf.py::test_NEGATIVE_gru_is_not_mask_invariant_so_the_test_can_fail PASSED [ 10%]
+tests/test_dl_tf.py::test_scores_independent_of_anything_after_t PASSED  [ 13%]
+tests/test_dl_tf.py::test_scaler_and_parameters_use_training_data_only PASSED [ 16%]
+tests/test_dl_tf.py::test_same_day_isolation_and_label_expiry PASSED     [ 20%]
+tests/test_dl_tf.py::test_seed_reproducible_cpu PASSED                   [ 23%]
+tests/test_dl_tf.py::test_latest_tf_scores_schema_and_leading_zeros PASSED [ 26%]
+tests/test_dl_tf.py::test_tf_oos_parquet_models_trained_before_prediction PASSED [ 30%]
+tests/test_dl_gru.py::test_sequence_features_use_no_future_data PASSED   [ 33%]
+tests/test_dl_gru.py::test_NEGATIVE_window_ending_after_t_is_detected PASSED [ 36%]
+tests/test_dl_gru.py::test_mask_is_one_on_suspended_days_and_time_axis_not_compressed PASSED [ 40%]
+tests/test_dl_gru.py::test_scaler_uses_training_segment_only PASSED      [ 43%]
+tests/test_dl_gru.py::test_split_idx_matches_B1_geometry_and_isolation PASSED [ 46%]
+tests/test_dl_gru.py::test_model_parameters_unaffected_by_test_period_data PASSED [ 50%]
+tests/test_dl_gru.py::test_latest_day_score_independent_of_anything_after_t PASSED [ 53%]
+tests/test_dl_gru.py::test_seed_reproducible_cpu PASSED                  [ 56%]
+tests/test_dl_gru.py::test_latest_gru_scores_schema_and_leading_zeros PASSED [ 60%]
+tests/test_dl_gru.py::test_gru_oos_parquet_models_trained_before_prediction PASSED [ 63%]
+tests/test_dl_mlp.py::test_split_geometry_and_label_expiry PASSED        [ 66%]
+tests/test_dl_mlp.py::test_NEGATIVE_split_without_gap_is_detected PASSED [ 70%]
+tests/test_dl_mlp.py::test_same_day_samples_never_in_train_and_validation PASSED [ 73%]
+tests/test_dl_mlp.py::test_train_part_is_prefix_of_P0_training_rows PASSED [ 76%]
+tests/test_dl_mlp.py::test_scaler_uses_training_statistics_only PASSED   [ 80%]
+tests/test_dl_mlp.py::test_model_parameters_unaffected_by_test_period_data PASSED [ 83%]
+tests/test_dl_mlp.py::test_inference_on_latest_day_uses_no_future_fields PASSED [ 86%]
+tests/test_dl_mlp.py::test_NEGATIVE_label_leak_is_detected PASSED        [ 90%]
+tests/test_dl_mlp.py::test_seed_reproducible PASSED                      [ 93%]
+tests/test_dl_mlp.py::test_latest_scores_csv_schema_and_leading_zeros PASSED [ 96%]
+tests/test_dl_mlp.py::test_oos_parquet_models_were_trained_before_prediction PASSED [100%]
+
+============================= 30 passed in 25.64s =============================

@@ -1,0 +1,71 @@
+run gru: torch 2.11.0+cu128, device=cuda, seeds=[42, 43, 44], subsample=1, max_epochs=12, max_signals=0, threads=8
+world + sequence features built: T=1400 N=1498 channels=6 in 9s
+retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 10s
+signal 0 2022-07-01 20 s
+retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 19s
+retrain r002 at 2022-08-26: n_train=250277 n_val=61400 train_end=2022-04-29 val_end=2022-08-10 (max label expiry 2022-08-18 < signal date); cumulative train time 29s
+retrain r003 at 2022-09-26: n_train=269951 n_val=63152 train_end=2022-06-01 val_end=2022-09-07 (max label expiry 2022-09-16 < signal date); cumulative train time 37s
+retrain r004 at 2022-10-31: n_train=290237 n_val=63390 train_end=2022-06-30 val_end=2022-10-13 (max label expiry 2022-10-21 < signal date); cumulative train time 46s
+retrain r005 at 2022-11-28: n_train=311273 n_val=62917 train_end=2022-07-28 val_end=2022-11-10 (max label expiry 2022-11-18 < signal date); cumulative train time 58s
+retrain r006 at 2022-12-26: n_train=332325 n_val=63244 train_end=2022-08-25 val_end=2022-12-08 (max label expiry 2022-12-16 < signal date); cumulative train time 68s
+signal 25 2023-01-03 79 s
+retrain r007 at 2023-01-31: n_train=353848 n_val=63486 train_end=2022-09-23 val_end=2023-01-06 (max label expiry 2023-01-16 < signal date); cumulative train time 79s
+retrain r008 at 2023-02-28: n_train=374176 n_val=63387 train_end=2022-10-28 val_end=2023-02-10 (max label expiry 2023-02-20 < signal date); cumulative train time 93s
+retrain r009 at 2023-03-28: n_train=395409 n_val=64034 train_end=2022-11-25 val_end=2023-03-10 (max label expiry 2023-03-20 < signal date); cumulative train time 104s
+retrain r010 at 2023-04-26: n_train=417291 n_val=65086 train_end=2022-12-23 val_end=2023-04-10 (max label expiry 2023-04-18 < signal date); cumulative train time 118s
+retrain r011 at 2023-05-29: n_train=437494 n_val=66648 train_end=2023-01-30 val_end=2023-05-11 (max label expiry 2023-05-19 < signal date); cumulative train time 144s
+retrain r012 at 2023-06-28: n_train=459203 n_val=65160 train_end=2023-02-27 val_end=2023-06-08 (max label expiry 2023-06-16 < signal date); cumulative train time 168s
+signal 50 2023-07-12 180 s
+retrain r013 at 2023-07-26: n_train=481681 n_val=63784 train_end=2023-03-27 val_end=2023-07-10 (max label expiry 2023-07-18 < signal date); cumulative train time 196s
+retrain r014 at 2023-08-23: n_train=503826 n_val=63355 train_end=2023-04-25 val_end=2023-08-07 (max label expiry 2023-08-15 < signal date); cumulative train time 212s
+retrain r015 at 2023-09-20: n_train=525212 n_val=64233 train_end=2023-05-26 val_end=2023-09-04 (max label expiry 2023-09-12 < signal date); cumulative train time 228s
+retrain r016 at 2023-10-26: n_train=545936 n_val=65493 train_end=2023-06-27 val_end=2023-10-10 (max label expiry 2023-10-18 < signal date); cumulative train time 242s
+retrain r017 at 2023-11-23: n_train=567187 n_val=66184 train_end=2023-07-25 val_end=2023-11-07 (max label expiry 2023-11-15 < signal date); cumulative train time 271s
+retrain r018 at 2023-12-21: n_train=588919 n_val=67407 train_end=2023-08-22 val_end=2023-12-05 (max label expiry 2023-12-13 < signal date); cumulative train time 294s
+signal 75 2024-01-12 308 s
+retrain r019 at 2024-01-19: n_train=611007 n_val=69089 train_end=2023-09-19 val_end=2024-01-03 (max label expiry 2024-01-11 < signal date); cumulative train time 335s
+retrain r020 at 2024-02-26: n_train=632999 n_val=70869 train_end=2023-10-25 val_end=2024-01-31 (max label expiry 2024-02-08 < signal date); cumulative train time 353s
+retrain r021 at 2024-03-25: n_train=655670 n_val=72470 train_end=2023-11-22 val_end=2024-03-07 (max label expiry 2024-03-15 < signal date); cumulative train time 388s
+retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 426s
+retrain r023 at 2024-05-27: n_train=673232 n_val=72598 train_end=2024-01-18 val_end=2024-05-09 (max label expiry 2024-05-17 < signal date); cumulative train time 455s
+retrain r024 at 2024-06-25: n_train=679401 n_val=71047 train_end=2024-02-23 val_end=2024-06-06 (max label expiry 2024-06-17 < signal date); cumulative train time 488s
+retrain r025 at 2024-07-23: n_train=685450 n_val=68084 train_end=2024-03-22 val_end=2024-07-05 (max label expiry 2024-07-15 < signal date); cumulative train time 519s
+signal 100 2024-07-23 534 s
+retrain r026 at 2024-08-20: n_train=690574 n_val=63783 train_end=2024-04-23 val_end=2024-08-02 (max label expiry 2024-08-12 < signal date); cumulative train time 543s
+retrain r027 at 2024-09-19: n_train=694514 n_val=59959 train_end=2024-05-24 val_end=2024-08-30 (max label expiry 2024-09-09 < signal date); cumulative train time 565s
+retrain r028 at 2024-10-24: n_train=699254 n_val=57525 train_end=2024-06-24 val_end=2024-10-08 (max label expiry 2024-10-16 < signal date); cumulative train time 586s
+retrain r029 at 2024-11-21: n_train=701848 n_val=61625 train_end=2024-07-22 val_end=2024-11-05 (max label expiry 2024-11-13 < signal date); cumulative train time 608s
+retrain r030 at 2024-12-19: n_train=701590 n_val=67488 train_end=2024-08-19 val_end=2024-12-03 (max label expiry 2024-12-11 < signal date); cumulative train time 631s
+retrain r031 at 2025-01-17: n_train=699435 n_val=73693 train_end=2024-09-18 val_end=2024-12-31 (max label expiry 2025-01-09 < signal date); cumulative train time 658s
+signal 125 2025-01-24 674 s
+retrain r032 at 2025-02-24: n_train=695839 n_val=74229 train_end=2024-10-23 val_end=2025-02-06 (max label expiry 2025-02-14 < signal date); cumulative train time 677s
+retrain r033 at 2025-03-24: n_train=700043 n_val=73324 train_end=2024-11-20 val_end=2025-03-06 (max label expiry 2025-03-14 < signal date); cumulative train time 701s
+retrain r034 at 2025-04-22: n_train=705719 n_val=72941 train_end=2024-12-18 val_end=2025-04-03 (max label expiry 2025-04-14 < signal date); cumulative train time 721s
+retrain r035 at 2025-05-23: n_train=712385 n_val=73439 train_end=2025-01-16 val_end=2025-05-07 (max label expiry 2025-05-15 < signal date); cumulative train time 741s
+retrain r036 at 2025-06-23: n_train=714355 n_val=73683 train_end=2025-02-21 val_end=2025-06-05 (max label expiry 2025-06-13 < signal date); cumulative train time 759s
+retrain r037 at 2025-07-21: n_train=717974 n_val=73619 train_end=2025-03-21 val_end=2025-07-03 (max label expiry 2025-07-11 < signal date); cumulative train time 778s
+signal 150 2025-08-04 795 s
+retrain r038 at 2025-08-18: n_train=721731 n_val=73803 train_end=2025-04-21 val_end=2025-07-31 (max label expiry 2025-08-08 < signal date); cumulative train time 799s
+retrain r039 at 2025-09-15: n_train=725597 n_val=74278 train_end=2025-05-22 val_end=2025-08-28 (max label expiry 2025-09-05 < signal date); cumulative train time 821s
+retrain r040 at 2025-10-21: n_train=728491 n_val=74856 train_end=2025-06-20 val_end=2025-09-25 (max label expiry 2025-10-13 < signal date); cumulative train time 846s
+retrain r041 at 2025-11-18: n_train=732325 n_val=75117 train_end=2025-07-18 val_end=2025-10-31 (max label expiry 2025-11-10 < signal date); cumulative train time 865s
+retrain r042 at 2025-12-16: n_train=735230 n_val=75055 train_end=2025-08-15 val_end=2025-11-28 (max label expiry 2025-12-08 < signal date); cumulative train time 884s
+retrain r043 at 2026-01-15: n_train=740696 n_val=74343 train_end=2025-09-12 val_end=2025-12-26 (max label expiry 2026-01-07 < signal date); cumulative train time 905s
+signal 175 2026-02-05 924 s
+retrain r044 at 2026-02-12: n_train=750466 n_val=74115 train_end=2025-10-20 val_end=2026-01-27 (max label expiry 2026-02-04 < signal date); cumulative train time 933s
+retrain r045 at 2026-03-20: n_train=746156 n_val=74103 train_end=2025-11-17 val_end=2026-03-04 (max label expiry 2026-03-12 < signal date); cumulative train time 962s
+retrain r046 at 2026-04-20: n_train=746414 n_val=74272 train_end=2025-12-15 val_end=2026-04-01 (max label expiry 2026-04-10 < signal date); cumulative train time 989s
+retrain r047 at 2026-05-21: n_train=751463 n_val=73869 train_end=2026-01-14 val_end=2026-04-30 (max label expiry 2026-05-13 < signal date); cumulative train time 1020s
+retrain r048 at 2026-06-18: n_train=755695 n_val=73466 train_end=2026-02-11 val_end=2026-06-02 (max label expiry 2026-06-10 < signal date); cumulative train time 1045s
+retrain r049 at 2026-07-17: n_train=760330 n_val=73167 train_end=2026-03-19 val_end=2026-07-01 (max label expiry 2026-07-09 < signal date); cumulative train time 1072s
+retrain r050 at 2026-08-14: n_train=763256 n_val=73014 train_end=2026-04-17 val_end=2026-07-29 (max label expiry 2026-08-06 < signal date); cumulative train time 1091s
+signal 200 2026-08-14 1112 s
+retrain r051 at 2026-09-11: n_train=765670 n_val=72425 train_end=2026-05-20 val_end=2026-08-26 (max label expiry 2026-09-03 < signal date); cumulative train time 1111s
+identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 207 periods=True
+simulation done in 4s
+EqualWeight c0: max |diff| vs P0 file = 9.71e-17
+EqualWeight c30: max |diff| vs P0 file = 9.97e-17
+EqualWeight c60: max |diff| vs P0 file = 9.97e-17
+OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_gru_oos_predictions.parquet rows=310086 (periods=207, codes=1498)
+latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_gru_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+run gru finished in 1158s

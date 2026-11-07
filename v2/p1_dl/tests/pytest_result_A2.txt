@@ -1,0 +1,28 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.7.0 -- D:\choice_quant_starter\.venv\Scripts\python.exe
+rootdir: D:\choice_quant_starter\v2\p1_dl
+plugins: anyio-4.15.1, platformdirs-4.13.4
+collecting ... collected 19 items
+
+tests/test_history_a2.py::test_shape_keys_and_columns PASSED             [  5%]
+tests/test_history_a2.py::test_codes_leading_zeros_everywhere PASSED     [ 10%]
+tests/test_history_a2.py::test_training_ends_before_label_window_of_evaluation_date PASSED [ 15%]
+tests/test_history_a2.py::test_scores_only_for_eligible_and_masks PASSED [ 21%]
+tests/test_history_a2.py::test_eligible_rows_have_a_bar_on_signal_date_and_stale_flag PASSED [ 26%]
+tests/test_history_a2.py::test_same_day_cross_stock_isolation_relative_return_uses_only_same_day_pool PASSED [ 31%]
+tests/test_history_a2.py::test_reconciliation_with_p0_period_returns_and_sets PASSED [ 36%]
+tests/test_history_a2.py::test_trades_consistent_with_p0_order_log PASSED [ 42%]
+tests/test_history_a2.py::test_corporate_action_exdate_not_mistaken_for_limit_down PASSED [ 47%]
+tests/test_history_a2.py::test_dashboard_smoke PASSED                    [ 52%]
+tests/test_latest_scoring.py::test_n_rows_and_unique_codes PASSED        [ 57%]
+tests/test_latest_scoring.py::test_codes_are_6_char_strings_with_leading_zeros PASSED [ 63%]
+tests/test_latest_scoring.py::test_dates_and_required_columns PASSED     [ 68%]
+tests/test_latest_scoring.py::test_eligibility_ranks_and_reasons PASSED  [ 73%]
+tests/test_latest_scoring.py::test_training_labels_expire_before_signal_date PASSED [ 78%]
+tests/test_latest_scoring.py::test_scores_unchanged_when_data_after_signal_date_is_tampered PASSED [ 84%]
+tests/test_latest_scoring.py::test_training_rows_never_include_dates_after_i_minus_12 PASSED [ 89%]
+tests/test_latest_scoring.py::test_negative_control_tampering_history_changes_scores PASSED [ 94%]
+tests/test_latest_scoring.py::test_last_day_features_use_only_dates_up_to_asof PASSED [100%]
+
+============================= 19 passed in 20.79s =============================
+

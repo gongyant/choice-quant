@@ -1,0 +1,72 @@
+{
+ "recon_summary": {
+  "p5_reported_cum_net_5d": 0.5416050510288881,
+  "p6_indep_cum_net_5d_with_merger": 0.5416050510288861,
+  "p6_indep_cum_net_5d_engine_last_price": 0.516959815806483,
+  "p5_engine_cum_net_5d": 0.5169598158064856,
+  "max_abs_diff_net_vs_p5_adj": 1.5178830414797062e-16,
+  "mean_abs_diff_net": 5.23063386501488e-17,
+  "n_periods_diff_gt_1em10": 0,
+  "n_periods_diff_gt_1em6": 0,
+  "p6_mdd_5d": -0.1324861502758462,
+  "p6_final_equity_per_1e6": 1541605.051028888,
+  "merger_002013_period": "2023-01-31",
+  "merger_note": {
+   "name": "中航机电",
+   "acquirer": "600372",
+   "acquirer_name": "中航电子(现中航机载)",
+   "ratio": 0.6647,
+   "record_date": "2023-03-16",
+   "new_share_list_date": "2023-04-14",
+   "acq_close_record": 17.56,
+   "acq_open_listing": 17.25,
+   "source": "巨潮 1216135561.PDF: 1股002013换0.6647股600372, 股权登记日2023-03-16, 3-17摘牌"
+  }
+ },
+ "overlap_note": {
+  "n_sig_5d": 207,
+  "n_sig_20d": 52,
+  "signal_spacing_5d": [
+   5
+  ],
+  "signal_spacing_20d": [
+   20
+  ],
+  "hold_5d": "entry=signal+1 open; exit=signal+1+5 open (= next 5d signal's entry). Periods abut, do NOT overlap.",
+  "hold_20d": "signals every 4th 5d-signal (=20 trading days); entry=signal+1 open; exit=signal+1+20 open (= next 20d signal's entry). Periods abut, do NOT overlap.",
+  "retained_names": "If a name is in next period's Top5, sell cost is waived (buffer/continuity); still one continuous economic holding across the abutting periods.",
+  "cash_slots": "Skipped slots (ST/suspend/limit-up) contribute 0 return; capital stays in cash for that 1/K.",
+  "dividends": "Open-to-open returns use O/F (forward-adjusted), so cash/stock dividends between entry and exit are in the return.",
+  "st_rule_2026_07_06": "p4lib.st_proxy: before 2026-07-06 main-board ST lock ≈5%; on/after that date the historical 5% proxy is frozen and OR'd with current ST names. Limit-up/down flags in world use date-appropriate board limits.",
+  "st_spot_check": [
+   {
+    "date": "2026-07-03",
+    "st_proxy_count": 23,
+    "elig": 1213,
+    "lim_up": 37,
+    "lim_dn": 6
+   },
+   {
+    "date": "2026-07-06",
+    "st_proxy_count": 242,
+    "elig": 1214,
+    "lim_up": 18,
+    "lim_dn": 6
+   },
+   {
+    "date": "2026-07-07",
+    "st_proxy_count": 242,
+    "elig": 1212,
+    "lim_up": 8,
+    "lim_dn": 9
+   },
+   {
+    "date": "2026-07-10",
+    "st_proxy_count": 242,
+    "elig": 1212,
+    "lim_up": 19,
+    "lim_dn": 4
+   }
+  ]
+ }
+}

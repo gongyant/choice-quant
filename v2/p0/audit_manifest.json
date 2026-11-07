@@ -1,0 +1,163 @@
+{
+ "created": "2026-10-18T18:25:12",
+ "timezone": "Asia/Singapore",
+ "python": "3.13.14",
+ "as_of_data_end": "2026-10-16",
+ "test_period": "signals 2022-07-01 .. 2026-09-28 (first_test 2022-07-01, step 5 trading days)",
+ "seeds": {
+  "model_seed": 42,
+  "bootstrap_seed": 20261018,
+  "bootstrap_block": 5,
+  "bootstrap_draws": 4000,
+  "sampling_seed_original": 20261016
+ },
+ "scripts": {
+  "p0lib.py": {
+   "sha256": "63e45932c310ef22613118a6dfcf34506a50f047dc0f21d18b56bd032299d427",
+   "bytes": 19715
+  },
+  "baseline_fixed.py": {
+   "sha256": "812a97fe34b5071873363b175950d316baaf0eceae614d6cc482f940ca6cd8d8",
+   "bytes": 7676
+  },
+  "old_replica.py": {
+   "sha256": "7dd7d2e3f273c0a83ac5a4fe50719f1480a55385768dbf49e0ef8a8b5589a08c",
+   "bytes": 4444
+  },
+  "collect_unadj.py": {
+   "sha256": "de806bb19d34a94335743cb70cce37a47035b0ffdd1229f30c6ea62d677d48cc",
+   "bytes": 7271
+  },
+  "p0_data_audit.py": {
+   "sha256": "40e01ff8334fd6c6ae3a2865c82c36d07b5ce59db4b1bc7ed6207b613718b6a9",
+   "bytes": 12665
+  },
+  "compare_stats.py": {
+   "sha256": "5734d1a3d958b912867a730cfe83d3b2b3c297e4ed4c67ec81db155bfa3fb6e7",
+   "bytes": 10574
+  },
+  "root_cause_3stocks.py": {
+   "sha256": "371a06229f34c699a0553fdd0196041691bcb2acd6a3dc85e3aff29cbd05180f",
+   "bytes": 3883
+  },
+  "dividend_crosscheck.py": {
+   "sha256": "aca15373f2d5e67f1e7cb6574f6b04ca8ac5cdebf2e1b29a5f35979ffe4c4445",
+   "bytes": 3304
+  },
+  "make_manifest.py": {
+   "sha256": "27f68fd8bb5b05392c8c5a681ba3abc789da403831d55d9ec49b70aa586e0420",
+   "bytes": 4656
+  },
+  "build_factor_fallback.py": {
+   "sha256": "fe684c7f1ba53e40b5b7dceb63c3743af88ee8eca6dc9ebf8eedb81dc3f44d79",
+   "bytes": 2205
+  },
+  "delisting_stress.py": {
+   "sha256": "9031abe5b0917792d4779c393179ee302e28482995b2a40845b2cefcbb999bca",
+   "bytes": 1626
+  },
+  "make_tables.py": {
+   "sha256": "bd24ff0300723226e76fee082a4a9d87f30f3b44752cf2371e18d87e927e5f90",
+   "bytes": 1637
+  },
+  "leakage_unit_tests/synth.py": {
+   "sha256": "8d09fad4573c3e088f9fbf0a2ce0cc3e4804e5e9f5c9c8bfd6045569f8f63ec9",
+   "bytes": 2645
+  },
+  "leakage_unit_tests/test_no_lookahead.py": {
+   "sha256": "998d0811d30e98c46a8384cd93521c5c0bdad5c68f9fca011cbec9038c607c9f",
+   "bytes": 6235
+  },
+  "leakage_unit_tests/test_execution.py": {
+   "sha256": "054e2fe4ae7e0daf55978378df4b65317cc0d8769a065d03b6b96f8e4083187f",
+   "bytes": 8278
+  }
+ },
+ "old_scripts_untouched": {
+  "baseline.py": "fbd01e4199a48ac463d4f6da511d24cbc9139c57dc86b837f23394301de6c1b8",
+  "quality_report.py": "cbc7cdb0fee0d1457ad253bafe235928cd3a6ba2eca7d1fe1aff58dbab33be8d",
+  "sample_universe.py": "88f3cc1457a1ab6942cbe32e7714e870eed17cf2fd905d5ecf595c11ef6adb7c"
+ },
+ "source_files": {
+  "sample_1500.csv": "3add72d5b1074f53ab3b06ff2ff1b4182fdc49871fe8d57a25affae1cf00c227",
+  "panel_1500.parquet": "6743e0ffac715c0a56ac014a9cd64d1118b1ee817232e21f39d0f3ef0c5eefb6",
+  "old walk_forward_returns.csv": "49608b0a90765928a35c8b1667106634a0c13afb4ec4b70eab25c744cd2ff180",
+  "old backtest_metrics.json": "cd31cc6213f6e3310590a7ce819337e520e4e918590a67fe230fe1b9aa682968",
+  "quality_per_stock.csv": "0453f1ca525560d637d14d9ba01c2206f97f2a248b5b4e1eae6dfeb05a508bd0",
+  "trade_calendar.csv": "905415c759c516aa26d9fc18763ff8abf0f1db1b28ea33b9a3053446da9b8d76"
+ },
+ "data_dirs": {
+  "raw_parquet_old_qfq(Tencent/Sina)": {
+   "files": 1507,
+   "tree_sha256": "55ebebf129973432c5f1247bafdb3b0b38d6eb8bc3ee42440426471a9acdd239"
+  },
+  "raw_unadj_parquet(Sina primary/Tencent fallback)": {
+   "files": 1498,
+   "tree_sha256": "4a12ea4f2074471f21d0de77a1b8e9746de5cb7eabce71bd9ee935528d884c84"
+  },
+  "adj_factors(Sina qfq-factor)": {
+   "files": 1498,
+   "tree_sha256": "46d5a18869de4f291e2c26a4b1cf000780d2962d98606f45bf0dbc43a964c534"
+  },
+  "raw_unadj_tx(Tencent raw cross-check)": {
+   "files": 1413,
+   "tree_sha256": "54e4c4860e1486ef07e52e538195936f034f949b6a52af15380a5c076a1999ee"
+  }
+ },
+ "data_sources": [
+  "Sina ak.stock_zh_a_daily adjust='' / 'qfq-factor'",
+  "Tencent ak.stock_zh_a_hist_tx adjust='' / 'qfq'",
+  "Sina ak.stock_history_dividend_detail",
+  "Sina ak.tool_trade_date_hist_sina (calendar)",
+  "cninfo industry (unchanged old files)"
+ ],
+ "trials": {
+  "hyperparameter_search": "none: one fixed parameter set per model (same as old baseline.py)",
+  "models": 3,
+  "benchmark_strategies": 2,
+  "equal_weight_benchmark": 1,
+  "topk": 50,
+  "data_versions_run": [
+   "fixed_sina_adj",
+   "tx_qfq_full",
+   "tx_qfq_rowfilter",
+   "tx_qfq_drop3",
+   "old_replica"
+  ],
+  "cost_levels": [
+   0.0,
+   0.001,
+   0.003,
+   0.006
+  ],
+  "full_walk_forward_runs": 5,
+  "simulated_portfolio_paths": 120,
+  "multiple_testing_note": "no model/parameter selection was done on test results; statistics are descriptive. 5 strategy x 4 data versions compared -> treat any single t as exploratory."
+ },
+ "result_files": [
+  "audit_manifest.json",
+  "before_after_table.md",
+  "bootstrap_intervals.csv",
+  "by_year_fixed.csv",
+  "comparative_metrics.csv",
+  "corporate_action_crosscheck.csv",
+  "corporate_action_crosscheck_errors.csv",
+  "corporate_actions.csv",
+  "cost_sensitivity.csv",
+  "coverage_classification.csv",
+  "cross_source_check.csv",
+  "data_audit_summary.json",
+  "delist_group_diagnostics.csv",
+  "delisting_stress.csv",
+  "e0_period_diffs.csv",
+  "e0_summary.csv",
+  "e1_sensitivity.csv",
+  "factor_fallback_report.csv",
+  "p0_audit_report.md",
+  "quality_event_log.csv",
+  "repro_old_numbers.json",
+  "trade_log.csv",
+  "volume_unit_check.csv",
+  "worklog.md"
+ ]
+}

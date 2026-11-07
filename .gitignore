@@ -1,0 +1,47 @@
+# 本地虚拟环境（体积大，且含本机路径）
+.venv/
+.venv_cuda/
+venv/
+env/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# 模型权重与序列化缓存（需留在本机，不入库）
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.pkl
+*.pickle
+*.joblib
+
+# 大表面板 / 特征矩阵
+*.parquet
+*.feather
+*.npz
+
+# 大数据目录（财务原始表、模型预测缓存、训练断点）
+fin_raw/
+preds/
+c_checkpoints/
+checkpoints/
+
+# 原始行情与复权缓存
+data/raw/
+data/raw_parquet/
+raw_parquet/
+**/panel_*.parquet
+
+# 编辑器与系统文件
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

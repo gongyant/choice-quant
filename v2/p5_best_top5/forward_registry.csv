@@ -1,0 +1,21 @@
+﻿signal_date,strategy,horizon,model_version,rules_sha256,code,name,sim_weight,sim_shares_per_100k,ref_close,planned_entry,planned_exit,registry_file
+2026-10-22,B1,5,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,300015,爱尔眼科,0.2,2500,7.97,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B1_h5.csv
+2026-10-22,B1,5,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,600905,三峡能源,0.2,6000,3.31,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B1_h5.csv
+2026-10-22,B1,5,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,000895,双汇发展,0.2,800,23.82,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B1_h5.csv
+2026-10-22,B1,5,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601800,中国交建,0.2,3200,6.1,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B1_h5.csv
+2026-10-22,B1,5,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601818,光大银行,0.2,6600,3.01,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B1_h5.csv
+2026-10-22,B1,20,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,300015,爱尔眼科,0.2,2500,7.97,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B1_h20.csv
+2026-10-22,B1,20,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,600905,三峡能源,0.2,6000,3.31,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B1_h20.csv
+2026-10-22,B1,20,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,000895,双汇发展,0.2,800,23.82,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B1_h20.csv
+2026-10-22,B1,20,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601800,中国交建,0.2,3200,6.1,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B1_h20.csv
+2026-10-22,B1,20,lowvol_v1(无模型),17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601818,光大银行,0.2,6600,3.01,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B1_h20.csv
+2026-10-22,B3,5,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601066,中信建投,0.2,800,22.45,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B3_h5.csv
+2026-10-22,B3,5,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,601318,中国平安,0.2,300,50.94,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B3_h5.csv
+2026-10-22,B3,5,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,600515,海南机场,0.2,7700,2.58,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B3_h5.csv
+2026-10-22,B3,5,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,300015,爱尔眼科,0.2,2500,7.97,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B3_h5.csv
+2026-10-22,B3,5,"E2reg_h5_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,002448,中原内配,0.2,1800,10.9,2026-10-23 开盘,entry+5交易日 开盘,p5_pred_20261022_B3_h5.csv
+2026-10-22,B3,20,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,600515,海南机场,0.2,7700,2.58,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B3_h20.csv
+2026-10-22,B3,20,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,300861,美畅股份,0.2,1400,13.72,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B3_h20.csv
+2026-10-22,B3,20,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,000987,越秀资本,0.2,2800,6.93,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B3_h20.csv
+2026-10-22,B3,20,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,603799,华友钴业,0.2,600,31.01,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B3_h20.csv
+2026-10-22,B3,20,"E2reg_h20_latest (P4 frozen, sha in P4 preds meta) + lowvol",17cdb376ad5dc7625b2b4abb7bb4deb63d8c65b59e211f6c9fd16aecec6aed5b,002250,联化科技,0.2,1500,13.24,2026-10-23 开盘,entry+20交易日 开盘,p5_pred_20261022_B3_h20.csv

@@ -1,0 +1,3 @@
+world (1403, 1498) 2021-01-04 2026-10-21 7 s
+features 50 83 s
+{'T': 1403, 'N': 1498, 'first': '2021-01-04', 'last': '2026-10-21', 'n_feat_E0': 11, 'n_feat_E1': 50, 'pool_last': 1176, 'st_proxy_vs_current_name_last_day': {'current_st_in_pool': 20, 'proxy_flag_in_pool': 11, 'both': 0}, 'st_proxy_share_hist': 0.03083188172554102, 'open_limit_up_share': 0.0019523827055255205, 'secs': 100}

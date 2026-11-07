@@ -1,0 +1,71 @@
+{
+ "signal_spacing_5d": [
+  5
+ ],
+ "signal_spacing_20d": [
+  20
+ ],
+ "overlap_note": "5日每期 entry=i+1 开盘, exit=i+6 开盘 = 下一期 entry;20日每4个信号(间隔20交易日)。持有期互不重叠,连乘复利合法。仅卖出顺延的仓位会跨入下一期。",
+ "delayed_exits": {
+  "B1_低波动Top5|h5": 1,
+  "B1_低波动Top5|h20": 0,
+  "B2_低波动+约束+缓冲|h5": 1,
+  "B2_低波动+约束+缓冲|h20": 0,
+  "B3_S4|h5": 0,
+  "B3_S4|h20": 1,
+  "E0_LGBM原模型|h5": 6,
+  "E0_LGBM原模型|h20": 1,
+  "E1_LGBM回归|h5": 3,
+  "E1_LGBM回归|h20": 1,
+  "E1_LambdaRank|h5": 9,
+  "E1_LambdaRank|h20": 3
+ },
+ "marked_unsold_rows": 5,
+ "marked_unsold_detail": [
+  {
+   "strategy": "B2_低波动+约束+缓冲",
+   "horizon": 5,
+   "signal_date": "2023-01-31",
+   "code": "002013",
+   "name": "中航机电",
+   "slot_ret_gross": -0.028828828828828867
+  },
+  {
+   "strategy": "E1_LambdaRank",
+   "horizon": 5,
+   "signal_date": "2024-07-09",
+   "code": "600297",
+   "name": "广汇汽车",
+   "slot_ret_gross": 0.05405405405405417
+  },
+  {
+   "strategy": "E1_LambdaRank",
+   "horizon": 5,
+   "signal_date": "2024-07-09",
+   "code": "000861",
+   "name": "海印股份",
+   "slot_ret_gross": -0.13888888888888884
+  },
+  {
+   "strategy": "E1_LambdaRank",
+   "horizon": 5,
+   "signal_date": "2024-07-16",
+   "code": "600297",
+   "name": "广汇汽车",
+   "slot_ret_gross": 0.0
+  },
+  {
+   "strategy": "E1_LambdaRank",
+   "horizon": 20,
+   "signal_date": "2024-04-24",
+   "code": "300116",
+   "name": "*ST保力",
+   "slot_ret_gross": -0.8472222222222222
+  }
+ ],
+ "pool_bench_missing_exit_share": 1.6756756756756757,
+ "pool_bench_mean_diff": {
+  "5": -9.378422789508434e-06,
+  "20": -0.00035257490052489085
+ }
+}

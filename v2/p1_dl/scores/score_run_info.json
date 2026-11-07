@@ -1,0 +1,40 @@
+{
+ "signal_index": 1399,
+ "signal_date": "2026-10-16",
+ "train_first_date": "2023-10-17",
+ "train_last_date": "2026-09-22",
+ "latest_label_end_date_used": "2026-10-08",
+ "n_train_rows": 850768,
+ "n_train_dates": 715,
+ "seed": 42,
+ "purge_trading_days": 12,
+ "window_years": 3,
+ "horizon": 5,
+ "features": [
+  "r1",
+  "r5",
+  "r20",
+  "r60",
+  "vol20",
+  "ma_gap5",
+  "ma_gap20",
+  "volume_ratio5",
+  "turnover5",
+  "log_amt20",
+  "range20"
+ ],
+ "models": [
+  "Ridge",
+  "HGB",
+  "LGBM"
+ ],
+ "label": "t+1 close -> t+6 close adjusted return, de-meaned over eligible_asof_t pool, winsorised 1/99 per day",
+ "train_seconds": 2.9,
+ "p0lib_sha256": "63e45932c310ef22613118a6dfcf34506a50f047dc0f21d18b56bd032299d427",
+ "baseline_py_sha256": "fbd01e4199a48ac463d4f6da511d24cbc9139c57dc86b837f23394301de6c1b8",
+ "p1lib_sha256": "76cd32ebd2b22006d5f96cbd1708c5dab975583ed89399a5da0385f52c3e2aa8",
+ "score_latest_sha256": "bc02dda424ebdb1c55d1a842418a9af2fb1e709704f309aae3d16b543d873e21",
+ "sample_sha256": "3add72d5b1074f53ab3b06ff2ff1b4182fdc49871fe8d57a25affae1cf00c227",
+ "model_version": "p1A1-2026-10-16-HGB_LGBM_Ridge-seed42-train2023-10-17_2026-09-22-p0lib63e45932",
+ "n_pool_asof": 1178
+}

@@ -1,0 +1,15 @@
+2026-10-19 08:53:43.211 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+PASS page1 市场全览 
+PASS page ② 股票查询 
+PASS page ③ 单股页 
+PASS page ④ 模型对比 
+PASS page ⑤ 风险与数据质量 
+PASS quick 600060: page=③ 单股页, header=['600060 海信视像'] 
+PASS quick 300487: page=③ 单股页, header=['300487 蓝晓科技'] 
+PASS quick 000027: page=③ 单股页, header=['000027 深圳能源'] 
+PASS select 000006: header=['000006 深振业Ａ'] 
+PASS select 002829: header=['002829 星网宇达'] 
+PASS select 920699: header=['920699 海达尔'] 
+PASS select 600485: header=['600485 *ST信威'] 
+PASS search 海信 
+total 2.6 s

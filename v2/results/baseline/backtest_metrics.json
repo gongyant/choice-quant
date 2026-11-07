@@ -1,0 +1,259 @@
+{
+  "config": {
+    "panel": "panel_1500.parquet",
+    "topk": 50,
+    "fee": 0.003,
+    "seed": 42,
+    "retrain": 4,
+    "first_test": "2022-07-01"
+  },
+  "last_fit": {
+    "train_rows": 850094,
+    "train_end": "2026-08-26",
+    "asof": "2026-09-11"
+  },
+  "first_signal": "2022-07-01",
+  "last_signal": "2026-09-28",
+  "periods": 207,
+  "avg_eligible_per_signal": 1141.2,
+  "strategies": {
+    "Ridge": {
+      "periods": 207,
+      "total_return": 0.0692,
+      "annualized_return": 0.0164,
+      "annualized_vol": 0.2748,
+      "sharpe": 0.197,
+      "max_drawdown": -0.4348,
+      "calmar": 0.038,
+      "win_rate": 0.5169,
+      "gross_mean_per_period": 0.00293,
+      "excess_vs_equal_weight_per_period": 0.00099,
+      "IC_mean": 0.0334,
+      "RankIC_mean": 0.0723,
+      "RankIC_IR": 0.524,
+      "avg_turnover": 0.617,
+      "excess_tstat": 1.01,
+      "by_year": {
+        "2022": {
+          "periods": 25,
+          "mean_net_per_period": 0.00586,
+          "RankIC": 0.0794
+        },
+        "2023": {
+          "periods": 49,
+          "mean_net_per_period": -0.00258,
+          "RankIC": 0.0719
+        },
+        "2024": {
+          "periods": 48,
+          "mean_net_per_period": -0.00083,
+          "RankIC": 0.0633
+        },
+        "2025": {
+          "periods": 49,
+          "mean_net_per_period": 0.00827,
+          "RankIC": 0.0797
+        },
+        "2026": {
+          "periods": 36,
+          "mean_net_per_period": -0.00453,
+          "RankIC": 0.0698
+        }
+      }
+    },
+    "HGB": {
+      "periods": 207,
+      "total_return": 0.7093,
+      "annualized_return": 0.1394,
+      "annualized_vol": 0.3174,
+      "sharpe": 0.567,
+      "max_drawdown": -0.366,
+      "calmar": 0.381,
+      "win_rate": 0.5217,
+      "gross_mean_per_period": 0.0055,
+      "excess_vs_equal_weight_per_period": 0.00357,
+      "IC_mean": 0.0774,
+      "RankIC_mean": 0.0694,
+      "RankIC_IR": 0.601,
+      "avg_turnover": 0.642,
+      "excess_tstat": 2.65,
+      "by_year": {
+        "2022": {
+          "periods": 25,
+          "mean_net_per_period": 0.00199,
+          "RankIC": 0.0552
+        },
+        "2023": {
+          "periods": 49,
+          "mean_net_per_period": 0.00345,
+          "RankIC": 0.0776
+        },
+        "2024": {
+          "periods": 48,
+          "mean_net_per_period": 0.0009,
+          "RankIC": 0.0596
+        },
+        "2025": {
+          "periods": 49,
+          "mean_net_per_period": 0.01282,
+          "RankIC": 0.0862
+        },
+        "2026": {
+          "periods": 36,
+          "mean_net_per_period": -0.00419,
+          "RankIC": 0.0583
+        }
+      }
+    },
+    "LGBM": {
+      "periods": 207,
+      "total_return": 0.4153,
+      "annualized_return": 0.0883,
+      "annualized_vol": 0.3225,
+      "sharpe": 0.42,
+      "max_drawdown": -0.3665,
+      "calmar": 0.241,
+      "win_rate": 0.5314,
+      "gross_mean_per_period": 0.00462,
+      "excess_vs_equal_weight_per_period": 0.00269,
+      "IC_mean": 0.0774,
+      "RankIC_mean": 0.0697,
+      "RankIC_IR": 0.61,
+      "avg_turnover": 0.645,
+      "excess_tstat": 1.81,
+      "by_year": {
+        "2022": {
+          "periods": 25,
+          "mean_net_per_period": 0.00053,
+          "RankIC": 0.0531
+        },
+        "2023": {
+          "periods": 49,
+          "mean_net_per_period": 0.00224,
+          "RankIC": 0.0777
+        },
+        "2024": {
+          "periods": 48,
+          "mean_net_per_period": -0.00024,
+          "RankIC": 0.0602
+        },
+        "2025": {
+          "periods": 49,
+          "mean_net_per_period": 0.01211,
+          "RankIC": 0.0844
+        },
+        "2026": {
+          "periods": 36,
+          "mean_net_per_period": -0.00413,
+          "RankIC": 0.0627
+        }
+      }
+    },
+    "Momentum20": {
+      "periods": 207,
+      "total_return": -0.899,
+      "annualized_return": -0.4277,
+      "annualized_vol": 0.3685,
+      "sharpe": -1.321,
+      "max_drawdown": -0.9007,
+      "calmar": -0.475,
+      "win_rate": 0.3816,
+      "gross_mean_per_period": -0.00809,
+      "excess_vs_equal_weight_per_period": -0.01002,
+      "IC_mean": -0.0319,
+      "RankIC_mean": -0.0546,
+      "RankIC_IR": -0.345,
+      "avg_turnover": 0.523,
+      "excess_tstat": -4.3,
+      "by_year": {
+        "2022": {
+          "periods": 25,
+          "mean_net_per_period": -0.00822,
+          "RankIC": -0.0638
+        },
+        "2023": {
+          "periods": 49,
+          "mean_net_per_period": -0.00691,
+          "RankIC": -0.0318
+        },
+        "2024": {
+          "periods": 48,
+          "mean_net_per_period": -0.01803,
+          "RankIC": -0.0565
+        },
+        "2025": {
+          "periods": 49,
+          "mean_net_per_period": -0.00146,
+          "RankIC": -0.0696
+        },
+        "2026": {
+          "periods": 36,
+          "mean_net_per_period": -0.01441,
+          "RankIC": -0.0561
+        }
+      }
+    },
+    "Reversal5": {
+      "periods": 207,
+      "total_return": -0.7903,
+      "annualized_return": -0.3164,
+      "annualized_vol": 0.3846,
+      "sharpe": -0.796,
+      "max_drawdown": -0.8042,
+      "calmar": -0.393,
+      "win_rate": 0.4058,
+      "gross_mean_per_period": -0.00331,
+      "excess_vs_equal_weight_per_period": -0.00524,
+      "IC_mean": 0.024,
+      "RankIC_mean": 0.0254,
+      "RankIC_IR": 0.179,
+      "avg_turnover": 0.921,
+      "excess_tstat": -2.27,
+      "by_year": {
+        "2022": {
+          "periods": 25,
+          "mean_net_per_period": -0.00523,
+          "RankIC": 0.0287
+        },
+        "2023": {
+          "periods": 49,
+          "mean_net_per_period": -0.01136,
+          "RankIC": 0.0161
+        },
+        "2024": {
+          "periods": 48,
+          "mean_net_per_period": -0.00453,
+          "RankIC": 0.0373
+        },
+        "2025": {
+          "periods": 49,
+          "mean_net_per_period": 0.00507,
+          "RankIC": 0.0376
+        },
+        "2026": {
+          "periods": 36,
+          "mean_net_per_period": -0.01668,
+          "RankIC": 0.0032
+        }
+      }
+    },
+    "EqualWeight": {
+      "periods": 207,
+      "total_return": 0.2857,
+      "annualized_return": 0.0631,
+      "annualized_vol": 0.2686,
+      "sharpe": 0.363,
+      "max_drawdown": -0.3534,
+      "calmar": 0.179,
+      "win_rate": 0.5217
+    }
+  },
+  "limitations": [
+    "股票池=1500只分层样本，不是全市场；在市股票来自当前清单，仅含2021年后退市股，仍有幸存者偏差",
+    "前复权价格由数据源在下载时点计算，非逐日点时复权",
+    "行业为最新分类，未做行业中性",
+    "未模拟T+1卖出约束外的涨跌停排队、100股整数手、容量与冲击成本；成本为粗估",
+    "ST/退市风险标记未按时点处理",
+    "买入价=t+1收盘价(需盘尾成交假设)"
+  ]
+}

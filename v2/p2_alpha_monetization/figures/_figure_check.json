@@ -1,0 +1,11 @@
+{
+ "decile_returns.png": 85162,
+ "decile_spread_by_halfyear.png": 150480,
+ "factor_attribution.png": 96183,
+ "ic_by_industry_latest.png": 44043,
+ "ic_by_liquidity.png": 61752,
+ "ic_by_vol_exchange.png": 50221,
+ "partial_ic.png": 58536,
+ "rankic_old_vs_new_and_baselines.png": 62316,
+ "subset_robustness.png": 93555
+}

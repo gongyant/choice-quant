@@ -1,0 +1,12 @@
+module,meaning,feature_example,priority,notes
+板块监测,多种行业和概念板块行情及成员数据,sector_return_5d,高,优先导出全板块目录和历史成份
+板块热图,颜色矩阵展示板块涨跌,sector_breadth,中,前提是有历史快照
+个股热图,个股涨跌分布,advance_decline_ratio,中,不要只取当前热图
+市场情绪,全市场涨跌分布及资金情绪,market_breadth,中,指标口径需固定
+增仓排名,供应商定义的增仓排序指标,position_change_proxy,低,首先核查算法定义和历史覆盖
+资金流向,根据成交/委托数据估算流入流出,flow_ratio,中,不等于真实净入金
+DDE决策,大单相关统计的专有分析,DDE_indicator,低,授权和历史接口可得性需确认
+暗盘资金,供应商专有资金分析指标,provider_indicator,低,需核实数据来源和定义
+板块报价,全板块行情和成交额,sector_volume,高,优先使用日线历史
+成分报价,板块包含的股票及报价,universe_membership,高,尽量拿历史成员防幸存者偏差
+龙虎榜,交易公开信息和异常交易统计,event_flag,低,发布时间与可交易时间要对齐

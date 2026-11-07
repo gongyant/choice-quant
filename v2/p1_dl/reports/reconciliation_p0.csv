@@ -1,0 +1,31 @@
+﻿check,model,max_abs_diff,n,note
+signal dates identical,-,0.0,207,207 periods 2022-07-01..2026-09-28
+n_pool,-,0.0,207,
+net period return c30 (simulate rerun vs period_returns.csv),Ridge,9.71445146547012e-17,207,
+Top50 set identical to sets.pkl (periods differing),Ridge,0.0,207,207/207 identical
+RankIC per period,Ridge,9.8879238130678e-17,207,
+IC per period,Ridge,9.71445146547012e-17,207,
+turnover_value (30bps),Ridge,5.551115123125783e-17,207,
+cash_frac_post (30bps),Ridge,9.974659986866641e-17,207,
+buy_filled (30bps),Ridge,0.0,207,
+n_hold (30bps),Ridge,0.0,207,
+order log identical to orders_primary_cost30bps.csv,Ridge,0.0,207,rows 15257 vs 15257
+net period return c30 (simulate rerun vs period_returns.csv),HGB,9.8879238130678e-17,207,
+Top50 set identical to sets.pkl (periods differing),HGB,0.0,207,207/207 identical
+RankIC per period,HGB,9.71445146547012e-17,207,
+IC per period,HGB,9.71445146547012e-17,207,
+turnover_value (30bps),HGB,5.551115123125783e-17,207,
+cash_frac_post (30bps),HGB,9.93129189996722e-17,207,
+buy_filled (30bps),HGB,0.0,207,
+n_hold (30bps),HGB,0.0,207,
+order log identical to orders_primary_cost30bps.csv,HGB,0.0,207,rows 13735 vs 13735
+net period return c30 (simulate rerun vs period_returns.csv),LGBM,9.8879238130678e-17,207,
+Top50 set identical to sets.pkl (periods differing),LGBM,0.0,207,207/207 identical
+RankIC per period,LGBM,9.71445146547012e-17,207,
+IC per period,LGBM,9.71445146547012e-17,207,
+turnover_value (30bps),LGBM,5.551115123125783e-17,207,
+cash_frac_post (30bps),LGBM,9.8879238130678e-17,207,
+buy_filled (30bps),LGBM,0.0,207,
+n_hold (30bps),LGBM,0.0,207,
+order log identical to orders_primary_cost30bps.csv,LGBM,0.0,207,rows 14045 vs 14045
+net period return c30,EqualWeight,9.974659986866641e-17,207,

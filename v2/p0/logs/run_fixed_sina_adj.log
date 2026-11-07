@@ -1,0 +1,10 @@
+fixed_sina_adj signal 0 2022-07-01 19 s
+fixed_sina_adj signal 25 2023-01-03 55 s
+fixed_sina_adj signal 50 2023-07-12 108 s
+fixed_sina_adj signal 75 2024-01-12 178 s
+fixed_sina_adj signal 100 2024-07-23 238 s
+fixed_sina_adj signal 125 2025-01-24 282 s
+fixed_sina_adj signal 150 2025-08-04 325 s
+fixed_sina_adj signal 175 2026-02-05 370 s
+fixed_sina_adj signal 200 2026-08-14 423 s
+done fixed_sina_adj 438 s; periods 207

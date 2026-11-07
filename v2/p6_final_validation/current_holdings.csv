@@ -1,0 +1,6 @@
+﻿asof,origin_signal,strategy,horizon,code,name,industry,entry_date,entry_open,ref_close,chg_pct,planned_exit,sim_weight,status,note
+2026-10-23,2026-10-22,B1,5,300015,爱尔眼科,医疗保健提供商与服务,2026-10-23,7.97,8.14,2.1329987452948673,entry+5 trading days open (~2026-10-30),0.2,OPEN_SIMULATED,"模拟持仓,非实盘;研究用"
+2026-10-23,2026-10-22,B1,5,600905,三峡能源,电力公用事业,2026-10-23,3.3,3.34,0.9063444108761365,entry+5 trading days open (~2026-10-30),0.2,OPEN_SIMULATED,"模拟持仓,非实盘;研究用"
+2026-10-23,2026-10-22,B1,5,000895,双汇发展,食品,2026-10-23,23.84,23.73,-0.37783375314861534,entry+5 trading days open (~2026-10-30),0.2,OPEN_SIMULATED,"模拟持仓,非实盘;研究用"
+2026-10-23,2026-10-22,B1,5,601800,中国交建,建筑与工程,2026-10-23,6.09,6.05,-0.8196721311475419,entry+5 trading days open (~2026-10-30),0.2,OPEN_SIMULATED,"模拟持仓,非实盘;研究用"
+2026-10-23,2026-10-22,B1,5,601818,光大银行,银行,2026-10-23,3.0,2.99,-0.6644518272425071,entry+5 trading days open (~2026-10-30),0.2,OPEN_SIMULATED,"模拟持仓,非实盘;研究用"

@@ -1,0 +1,13 @@
+{
+ "version": "p6_B1_rules_v1",
+ "frozen_at": "2026-10-24T16:54:38",
+ "signal": "low-vol = -vol20",
+ "filters": "elig(asof last P4 day)&traded signal day&not close limit-up&amt20>=1e8&not ST",
+ "constraints": "Top20 -> volp<=0.8, dd60>-35%, r20>-25%, <=2 per industry_l2",
+ "buffer": "keep previous simulated holdings while rank<40",
+ "cost": "0.30% round-trip; retained names free",
+ "entry": "t+1 open",
+ "exit": "t+1+h open (delay if suspended/open limit-down)",
+ "slots": 5,
+ "note": "Frozen for forward validation after 2026-10-22. Do not retune."
+}

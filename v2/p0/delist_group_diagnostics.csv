@@ -1,0 +1,21 @@
+﻿item,value
+pool delisted-in-sample share (mean over periods),0.04846941039640608
+"pool label mean listed (5d, mark-to-market)",0.00240004946104654
+pool label mean delisted-in-sample (5d),-0.011481498437069516
+reweighted pool mean with delisted share=3.6% (universe-like),0.001900313736714362
+reweighted pool mean with delisted share as sampled,0.0019424911307278946
+Ridge: Top50 delisted share,0.05893719806763285
+Ridge: mean 5d label of picks - listed,0.004040542294528307
+Ridge: mean 5d label of picks - delisted-in-sample,-0.016345208410789683
+HGB: Top50 delisted share,0.06318840579710146
+HGB: mean 5d label of picks - listed,0.005464943240293215
+HGB: mean 5d label of picks - delisted-in-sample,-0.002909071496722425
+LGBM: Top50 delisted share,0.06714975845410628
+LGBM: mean 5d label of picks - listed,0.005638714812502064
+LGBM: mean 5d label of picks - delisted-in-sample,-0.002283155097250683
+Momentum20: Top50 delisted share,0.06666666666666667
+Momentum20: mean 5d label of picks - listed,-0.008712465641939508
+Momentum20: mean 5d label of picks - delisted-in-sample,-0.007963987191198561
+Reversal5: Top50 delisted share,0.10937198067632853
+Reversal5: mean 5d label of picks - listed,0.001692057622213714
+Reversal5: mean 5d label of picks - delisted-in-sample,-0.029346235606225755

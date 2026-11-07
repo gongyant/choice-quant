@@ -1,0 +1,41 @@
+{
+ "mlp": {
+  "file": "scores/dl_mlp_scores_20261016.csv",
+  "n_file_rows": 1498,
+  "n_eligible": 1178,
+  "missing_codes_vs_sample": [
+   "600485",
+   "600677"
+  ],
+  "model_id": "mlp_latest",
+  "train_end": "2026-06-16",
+  "val_end": "2026-09-22",
+  "max_label_expiry": "2026-10-08"
+ },
+ "gru": {
+  "file": "scores/dl_gru_scores_20261016.csv",
+  "n_file_rows": 1498,
+  "n_eligible": 1178,
+  "missing_codes_vs_sample": [
+   "600485",
+   "600677"
+  ],
+  "model_id": "gru_latest",
+  "train_end": "2026-06-16",
+  "val_end": "2026-09-22",
+  "max_label_expiry": "2026-10-08"
+ },
+ "tf": {
+  "file": "scores/dl_tf_scores_20261016.csv",
+  "n_file_rows": 1498,
+  "n_eligible": 1178,
+  "missing_codes_vs_sample": [
+   "600485",
+   "600677"
+  ],
+  "model_id": "tf_latest",
+  "train_end": "2026-06-16",
+  "val_end": "2026-09-22",
+  "max_label_expiry": "2026-10-08"
+ }
+}

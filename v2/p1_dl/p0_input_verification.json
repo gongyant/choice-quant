@@ -1,0 +1,64 @@
+{
+ "checks": [
+  {
+   "name": "sha256 sample_1500.csv",
+   "ok": true,
+   "detail": "3add72d5b1074f53ab3b06ff2ff1b4182fdc49871fe8d57a25affae1cf00c227"
+  },
+  {
+   "name": "sha256 trade_calendar.csv",
+   "ok": true,
+   "detail": "905415c759c516aa26d9fc18763ff8abf0f1db1b28ea33b9a3053446da9b8d76"
+  },
+  {
+   "name": "tree sha256 raw_unadj_parquet",
+   "ok": true,
+   "detail": "1498 files 4a12ea4f2074471f"
+  },
+  {
+   "name": "tree sha256 adj_factors",
+   "ok": true,
+   "detail": "1498 files 46d5a18869de4f29"
+  },
+  {
+   "name": "tree sha256 raw_unadj_tx",
+   "ok": true,
+   "detail": "1413 files 54e4c4860e1486ef"
+  },
+  {
+   "name": "sha256 p0lib.py",
+   "ok": true,
+   "detail": "63e45932c310ef22613118a6dfcf34506a50f047dc0f21d18b56bd032299d427"
+  },
+  {
+   "name": "sha256 baseline_fixed.py",
+   "ok": true,
+   "detail": "812a97fe34b5071873363b175950d316baaf0eceae614d6cc482f940ca6cd8d8"
+  },
+  {
+   "name": "sha256 baseline.py (old, untouched)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "sample rows",
+   "ok": true,
+   "detail": "1500 rows, unique=True"
+  },
+  {
+   "name": "calendar",
+   "ok": true,
+   "detail": "1400 days 2021-01-04..2026-10-16"
+  },
+  {
+   "name": "raw_unadj coverage",
+   "ok": true,
+   "detail": "1498 files; rows total 1761682; first 2021-01-04 last 2026-10-16; non-positive closes 0"
+  }
+ ],
+ "missing_codes": [
+  "600485",
+  "600677"
+ ],
+ "all_ok": true
+}

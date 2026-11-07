@@ -1,0 +1,87 @@
+retrain 0 2022-07-01 278924 10 s
+retrain 4 2022-07-29 299716 11 s
+retrain 8 2022-08-26 320594 13 s
+retrain 12 2022-09-26 342076 14 s
+retrain 16 2022-10-31 363106 15 s
+retrain 20 2022-11-28 383511 17 s
+retrain 24 2022-12-26 405320 18 s
+retrain 28 2023-01-31 426592 20 s
+retrain 32 2023-02-28 446898 22 s
+retrain 36 2023-03-28 469354 23 s
+retrain 40 2023-04-26 491678 25 s
+retrain 44 2023-05-29 513546 27 s
+retrain 48 2023-06-28 534514 29 s
+retrain 52 2023-07-26 555462 31 s
+retrain 56 2023-08-23 576901 33 s
+retrain 60 2023-09-20 598747 35 s
+retrain 64 2023-10-26 620955 37 s
+retrain 68 2023-11-23 643085 39 s
+retrain 72 2023-12-21 666154 41 s
+retrain 76 2024-01-19 690044 44 s
+retrain 80 2024-02-26 713954 46 s
+retrain 84 2024-03-25 738624 48 s
+retrain 88 2024-04-24 751159 51 s
+retrain 92 2024-05-27 756647 53 s
+retrain 96 2024-06-25 761645 56 s
+retrain 100 2024-07-23 764290 59 s
+retrain 104 2024-08-20 764960 61 s
+retrain 108 2024-09-19 764745 64 s
+retrain 112 2024-10-24 766067 66 s
+retrain 116 2024-11-21 772007 69 s
+retrain 120 2024-12-19 777753 71 s
+retrain 124 2025-01-17 781669 74 s
+retrain 128 2025-02-24 781237 77 s
+retrain 132 2025-03-24 784711 79 s
+retrain 136 2025-04-22 789904 82 s
+retrain 140 2025-05-23 796513 85 s
+retrain 144 2025-06-23 799073 87 s
+retrain 148 2025-07-21 802683 90 s
+retrain 152 2025-08-18 806480 93 s
+retrain 156 2025-09-15 810935 96 s
+retrain 160 2025-10-21 814447 99 s
+retrain 164 2025-11-18 818591 102 s
+retrain 168 2025-12-16 821562 105 s
+retrain 172 2026-01-15 826373 108 s
+retrain 176 2026-02-12 835765 111 s
+retrain 180 2026-03-20 831463 113 s
+retrain 184 2026-04-20 831671 116 s
+retrain 188 2026-05-21 836579 119 s
+retrain 192 2026-06-18 840287 122 s
+retrain 196 2026-07-17 844591 125 s
+retrain 200 2026-08-14 847173 127 s
+retrain 204 2026-09-11 849134 131 s
+signals 207 walk-forward done 131 s
+simulated 131 s
+                                                           check        model  max_abs_diff    n                                note
+0                                         signal dates identical            -  0.000000e+00  207  207 periods 2022-07-01..2026-09-28
+1                                                         n_pool            -  0.000000e+00  207                                    
+2   net period return c30 (simulate rerun vs period_returns.csv)        Ridge  9.714451e-17  207                                    
+3            Top50 set identical to sets.pkl (periods differing)        Ridge  0.000000e+00  207                   207/207 identical
+4                                              RankIC per period        Ridge  9.887924e-17  207                                    
+5                                                  IC per period        Ridge  9.714451e-17  207                                    
+6                                         turnover_value (30bps)        Ridge  5.551115e-17  207                                    
+7                                         cash_frac_post (30bps)        Ridge  9.974660e-17  207                                    
+8                                             buy_filled (30bps)        Ridge  0.000000e+00  207                                    
+9                                                 n_hold (30bps)        Ridge  0.000000e+00  207                                    
+10           order log identical to orders_primary_cost30bps.csv        Ridge  0.000000e+00  207                 rows 15257 vs 15257
+11  net period return c30 (simulate rerun vs period_returns.csv)          HGB  9.887924e-17  207                                    
+12           Top50 set identical to sets.pkl (periods differing)          HGB  0.000000e+00  207                   207/207 identical
+13                                             RankIC per period          HGB  9.714451e-17  207                                    
+14                                                 IC per period          HGB  9.714451e-17  207                                    
+15                                        turnover_value (30bps)          HGB  5.551115e-17  207                                    
+16                                        cash_frac_post (30bps)          HGB  9.931292e-17  207                                    
+17                                            buy_filled (30bps)          HGB  0.000000e+00  207                                    
+18                                                n_hold (30bps)          HGB  0.000000e+00  207                                    
+19           order log identical to orders_primary_cost30bps.csv          HGB  0.000000e+00  207                 rows 13735 vs 13735
+20  net period return c30 (simulate rerun vs period_returns.csv)         LGBM  9.887924e-17  207                                    
+21           Top50 set identical to sets.pkl (periods differing)         LGBM  0.000000e+00  207                   207/207 identical
+22                                             RankIC per period         LGBM  9.714451e-17  207                                    
+23                                                 IC per period         LGBM  9.714451e-17  207                                    
+24                                        turnover_value (30bps)         LGBM  5.551115e-17  207                                    
+25                                        cash_frac_post (30bps)         LGBM  9.887924e-17  207                                    
+26                                            buy_filled (30bps)         LGBM  0.000000e+00  207                                    
+27                                                n_hold (30bps)         LGBM  0.000000e+00  207                                    
+28           order log identical to orders_primary_cost30bps.csv         LGBM  0.000000e+00  207                 rows 14045 vs 14045
+29                                         net period return c30  EqualWeight  9.974660e-17  207                                    
+parquet (930258, 35) 134 s
+trades (20704, 25) {'CLOSED': 20201, 'BUY_REJECTED': 335, 'OPEN_AT_END_OR_STUCK': 168} 135 s

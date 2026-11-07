@@ -1,0 +1,11 @@
+{
+ "max_abs_mine_vs_p1ckpt": 8.64267349243164e-06,
+ "corr": 0.9999999999973016,
+ "best_epoch_mine": 5,
+ "best_epoch_p1": 5,
+ "best_val_mine": 0.9556708744144172,
+ "best_val_p1": 0.9556664648082797,
+ "max_abs_mine_vs_frozen": 8.64267349243164e-06,
+ "n_train_mine": 209038,
+ "n_train_p1": 209038
+}

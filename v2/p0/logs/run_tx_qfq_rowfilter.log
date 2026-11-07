@@ -1,0 +1,10 @@
+tx_qfq_rowfilter signal 0 2022-07-01 22 s
+tx_qfq_rowfilter signal 25 2023-01-03 59 s
+tx_qfq_rowfilter signal 50 2023-07-12 114 s
+tx_qfq_rowfilter signal 75 2024-01-12 184 s
+tx_qfq_rowfilter signal 100 2024-07-23 241 s
+tx_qfq_rowfilter signal 125 2025-01-24 285 s
+tx_qfq_rowfilter signal 150 2025-08-04 330 s
+tx_qfq_rowfilter signal 175 2026-02-05 375 s
+tx_qfq_rowfilter signal 200 2026-08-14 429 s
+done tx_qfq_rowfilter 440 s; periods 207

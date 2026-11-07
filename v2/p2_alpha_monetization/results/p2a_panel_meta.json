@@ -1,0 +1,20 @@
+{
+ "n_rows": 310086,
+ "n_dates": 207,
+ "n_codes": 1498,
+ "eligible_rows": 238781,
+ "elig_mismatch_vs_frozen": {
+  "HGB": 0,
+  "LGBM": 0,
+  "Ridge": 0,
+  "MLP": 0,
+  "GRU": 0,
+  "TF": 0
+ },
+ "ret_new_eligible_finite": 238658,
+ "ret_old_eligible_finite": 238781,
+ "share_entry_delayed": 0.013927588273004195,
+ "share_not_buyable_t1_eligible": 0.014414882256125906,
+ "share_exit_forced": 0.0009930528203538117,
+ "built_seconds": 10.8
+}

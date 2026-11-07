@@ -1,0 +1,19 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.7.0 -- D:\choice_quant_starter\.venv\Scripts\python.exe
+rootdir: D:\choice_quant_starter\v2\p1_dl
+plugins: anyio-4.15.1, platformdirs-4.13.4
+collecting ... collected 11 items
+
+tests/test_dl_mlp.py::test_split_geometry_and_label_expiry PASSED        [  9%]
+tests/test_dl_mlp.py::test_NEGATIVE_split_without_gap_is_detected PASSED [ 18%]
+tests/test_dl_mlp.py::test_same_day_samples_never_in_train_and_validation PASSED [ 27%]
+tests/test_dl_mlp.py::test_train_part_is_prefix_of_P0_training_rows PASSED [ 36%]
+tests/test_dl_mlp.py::test_scaler_uses_training_statistics_only PASSED   [ 45%]
+tests/test_dl_mlp.py::test_model_parameters_unaffected_by_test_period_data PASSED [ 54%]
+tests/test_dl_mlp.py::test_inference_on_latest_day_uses_no_future_fields PASSED [ 63%]
+tests/test_dl_mlp.py::test_NEGATIVE_label_leak_is_detected PASSED        [ 72%]
+tests/test_dl_mlp.py::test_seed_reproducible PASSED                      [ 81%]
+tests/test_dl_mlp.py::test_latest_scores_csv_schema_and_leading_zeros PASSED [ 90%]
+tests/test_dl_mlp.py::test_oos_parquet_models_were_trained_before_prediction PASSED [100%]
+
+============================= 11 passed in 3.78s ==============================

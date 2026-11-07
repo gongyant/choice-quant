@@ -1,0 +1,17 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.7.0 -- D:\choice_quant_starter\.venv\Scripts\python.exe
+rootdir: D:\choice_quant_starter\v2\p1_dl
+collecting ... collected 9 items
+
+tests/test_latest_scoring.py::test_n_rows_and_unique_codes PASSED        [ 11%]
+tests/test_latest_scoring.py::test_codes_are_6_char_strings_with_leading_zeros PASSED [ 22%]
+tests/test_latest_scoring.py::test_dates_and_required_columns PASSED     [ 33%]
+tests/test_latest_scoring.py::test_eligibility_ranks_and_reasons PASSED  [ 44%]
+tests/test_latest_scoring.py::test_training_labels_expire_before_signal_date PASSED [ 55%]
+tests/test_latest_scoring.py::test_scores_unchanged_when_data_after_signal_date_is_tampered PASSED [ 66%]
+tests/test_latest_scoring.py::test_training_rows_never_include_dates_after_i_minus_12 PASSED [ 77%]
+tests/test_latest_scoring.py::test_negative_control_tampering_history_changes_scores PASSED [ 88%]
+tests/test_latest_scoring.py::test_last_day_features_use_only_dates_up_to_asof PASSED [100%]
+
+============================== 9 passed in 5.61s ==============================
+

@@ -1,0 +1,292 @@
+# P1-B worklog (D:\choice_quant_starter\v2\p1_dl\dl\worklog_dl.md)
+Times are Asia/Singapore (UTC+8), PC clock.
+
+## PRE-REGISTRATION (written before any MLP test-period result was produced)
+- Task: rank stocks by 5-day relative return (label = P0 `yw`: t+1 close -> t+6 close on the master calendar, adjusted-close ratio from raw/Sina factor, de-meaned over the same eligible_asof_t pool, winsorised 1/99%). Ranking task only; MAE is NOT applicable (no absolute-return regression head).
+- Input: P0's 11 cross-sectional rank features (identical to Ridge/HGB/LGBM input), z-scored with mean/std fitted on the training part only.
+- Network 11-64-32-1, GELU, dropout 0.2; AdamW lr 1e-3, wd 1e-4, batch 4096, <=30 epochs, early stopping patience 3, best-epoch weights restored. Loss = MSE on yw / std(train yw). (Single pre-registered configuration; no hyper-parameter search.)
+- Early-stopping validation = LAST 60 trading days of P0's 3-year training window (dates hi-59..hi, hi = signal-12); training rows = dates up to hi-69 (10-day purge gap between train and validation). Max train label expiry = te+6 < first validation date; max validation label expiry = signal-6 < signal date. Dates never shared between train and validation.
+- Walk-forward identical to P0: first test signal 2022-07-01 (calendar index), 5-day steps, retrain every 4 periods, 207 periods, Top50, same simulator/costs/state machine (p0lib.simulate), equal-weight benchmark through the same simulator.
+- Seeds 42/43/44; headline = ensemble (mean of raw scores, then Top50) and the individual seeds are reported as distribution. Headline cost = 0.30% round trip. No other variants will be selected post hoc.
+- Device: CPU (deterministic). 2025-2026 has been used repeatedly for model comparison: NOT a blind test set.
+
+## Log- [2026-10-18 21:10:56] run smoke: torch 2.14.1+cpu, cuda_available=False, device=cpu (deterministic), seeds=[42], max_signals=5
+- [2026-10-18 21:11:06] world built: T=1400 N=1498 in 9s
+- [2026-10-18 21:11:09] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 4s
+- [2026-10-18 21:11:11] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 6s
+- [2026-10-18 21:11:11] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 5 periods=True
+- [2026-10-18 21:11:12] HGB reproduction check in this pipeline: Top50 identical to P0 for 4/4 periods
+- [2026-10-18 21:11:12] simulation done in 0s
+- [2026-10-18 21:11:12] EqualWeight c0: max |diff| vs P0 file = 6.85e-17
+- [2026-10-18 21:11:12] EqualWeight c30: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 21:11:12] EqualWeight c60: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 21:11:12] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_oos_predictions.parquet rows=7490 (periods=5, codes=1498)
+- [2026-10-18 21:11:17] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; latest model train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 21:11:17] run smoke finished in 21s
+- [2026-10-18 21:11:29] run mlp: torch 2.14.1+cpu, cuda_available=False, device=cpu (deterministic), seeds=[42, 43, 44], max_signals=0
+- [2026-10-18 21:11:39] world built: T=1400 N=1498 in 9s
+- [2026-10-18 21:11:46] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 7s
+- [2026-10-18 21:11:51] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 12s
+- [2026-10-18 21:11:55] retrain r002 at 2022-08-26: n_train=250277 n_val=61400 train_end=2022-04-29 val_end=2022-08-10 (max label expiry 2022-08-18 < signal date); cumulative train time 16s
+- [2026-10-18 21:12:00] retrain r003 at 2022-09-26: n_train=269951 n_val=63152 train_end=2022-06-01 val_end=2022-09-07 (max label expiry 2022-09-16 < signal date); cumulative train time 21s
+- [2026-10-18 21:12:04] retrain r004 at 2022-10-31: n_train=290237 n_val=63390 train_end=2022-06-30 val_end=2022-10-13 (max label expiry 2022-10-21 < signal date); cumulative train time 25s
+- [2026-10-18 21:12:10] retrain r005 at 2022-11-28: n_train=311273 n_val=62917 train_end=2022-07-28 val_end=2022-11-10 (max label expiry 2022-11-18 < signal date); cumulative train time 31s
+- [2026-10-18 21:12:15] retrain r006 at 2022-12-26: n_train=332325 n_val=63244 train_end=2022-08-25 val_end=2022-12-08 (max label expiry 2022-12-16 < signal date); cumulative train time 36s
+- [2026-10-18 21:12:21] retrain r007 at 2023-01-31: n_train=353848 n_val=63486 train_end=2022-09-23 val_end=2023-01-06 (max label expiry 2023-01-16 < signal date); cumulative train time 42s
+- [2026-10-18 21:12:26] retrain r008 at 2023-02-28: n_train=374176 n_val=63387 train_end=2022-10-28 val_end=2023-02-10 (max label expiry 2023-02-20 < signal date); cumulative train time 47s
+- [2026-10-18 21:12:33] retrain r009 at 2023-03-28: n_train=395409 n_val=64034 train_end=2022-11-25 val_end=2023-03-10 (max label expiry 2023-03-20 < signal date); cumulative train time 54s
+- [2026-10-18 21:12:39] retrain r010 at 2023-04-26: n_train=417291 n_val=65086 train_end=2022-12-23 val_end=2023-04-10 (max label expiry 2023-04-18 < signal date); cumulative train time 60s
+- [2026-10-18 21:12:48] retrain r011 at 2023-05-29: n_train=437494 n_val=66648 train_end=2023-01-30 val_end=2023-05-11 (max label expiry 2023-05-19 < signal date); cumulative train time 69s
+- [2026-10-18 21:12:58] retrain r012 at 2023-06-28: n_train=459203 n_val=65160 train_end=2023-02-27 val_end=2023-06-08 (max label expiry 2023-06-16 < signal date); cumulative train time 79s
+- [2026-10-18 21:13:13] retrain r013 at 2023-07-26: n_train=481681 n_val=63784 train_end=2023-03-27 val_end=2023-07-10 (max label expiry 2023-07-18 < signal date); cumulative train time 94s
+- [2026-10-18 21:13:22] retrain r014 at 2023-08-23: n_train=503826 n_val=63355 train_end=2023-04-25 val_end=2023-08-07 (max label expiry 2023-08-15 < signal date); cumulative train time 103s
+- [2026-10-18 21:13:31] retrain r015 at 2023-09-20: n_train=525212 n_val=64233 train_end=2023-05-26 val_end=2023-09-04 (max label expiry 2023-09-12 < signal date); cumulative train time 112s
+- [2026-10-18 21:13:43] retrain r016 at 2023-10-26: n_train=545936 n_val=65493 train_end=2023-06-27 val_end=2023-10-10 (max label expiry 2023-10-18 < signal date); cumulative train time 123s
+- [2026-10-18 21:13:56] retrain r017 at 2023-11-23: n_train=567187 n_val=66184 train_end=2023-07-25 val_end=2023-11-07 (max label expiry 2023-11-15 < signal date); cumulative train time 137s
+- [2026-10-18 21:14:06] retrain r018 at 2023-12-21: n_train=588919 n_val=67407 train_end=2023-08-22 val_end=2023-12-05 (max label expiry 2023-12-13 < signal date); cumulative train time 147s
+- [2026-10-18 21:14:15] retrain r019 at 2024-01-19: n_train=611007 n_val=69089 train_end=2023-09-19 val_end=2024-01-03 (max label expiry 2024-01-11 < signal date); cumulative train time 155s
+- [2026-10-18 21:14:24] retrain r020 at 2024-02-26: n_train=632999 n_val=70869 train_end=2023-10-25 val_end=2024-01-31 (max label expiry 2024-02-08 < signal date); cumulative train time 164s
+- [2026-10-18 21:14:36] retrain r021 at 2024-03-25: n_train=655670 n_val=72470 train_end=2023-11-22 val_end=2024-03-07 (max label expiry 2024-03-15 < signal date); cumulative train time 176s
+- [2026-10-18 21:14:44] retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 184s
+- [2026-10-18 21:14:56] retrain r023 at 2024-05-27: n_train=673232 n_val=72598 train_end=2024-01-18 val_end=2024-05-09 (max label expiry 2024-05-17 < signal date); cumulative train time 196s
+- [2026-10-18 21:15:12] retrain r024 at 2024-06-25: n_train=679401 n_val=71047 train_end=2024-02-23 val_end=2024-06-06 (max label expiry 2024-06-17 < signal date); cumulative train time 212s
+- [2026-10-18 21:15:58] retrain r025 at 2024-07-23: n_train=685450 n_val=68084 train_end=2024-03-22 val_end=2024-07-05 (max label expiry 2024-07-15 < signal date); cumulative train time 258s
+- [2026-10-18 21:16:44] retrain r026 at 2024-08-20: n_train=690574 n_val=63783 train_end=2024-04-23 val_end=2024-08-02 (max label expiry 2024-08-12 < signal date); cumulative train time 304s
+- [2026-10-18 21:17:02] retrain r027 at 2024-09-19: n_train=694514 n_val=59959 train_end=2024-05-24 val_end=2024-08-30 (max label expiry 2024-09-09 < signal date); cumulative train time 321s
+- [2026-10-18 21:17:11] retrain r028 at 2024-10-24: n_train=699254 n_val=57525 train_end=2024-06-24 val_end=2024-10-08 (max label expiry 2024-10-16 < signal date); cumulative train time 331s
+- [2026-10-18 21:17:21] retrain r029 at 2024-11-21: n_train=701848 n_val=61625 train_end=2024-07-22 val_end=2024-11-05 (max label expiry 2024-11-13 < signal date); cumulative train time 341s
+- [2026-10-18 21:17:35] retrain r030 at 2024-12-19: n_train=701590 n_val=67488 train_end=2024-08-19 val_end=2024-12-03 (max label expiry 2024-12-11 < signal date); cumulative train time 355s
+- [2026-10-18 21:17:43] retrain r031 at 2025-01-17: n_train=699435 n_val=73693 train_end=2024-09-18 val_end=2024-12-31 (max label expiry 2025-01-09 < signal date); cumulative train time 363s
+- [2026-10-18 21:17:54] retrain r032 at 2025-02-24: n_train=695839 n_val=74229 train_end=2024-10-23 val_end=2025-02-06 (max label expiry 2025-02-14 < signal date); cumulative train time 373s
+- [2026-10-18 21:18:14] retrain r033 at 2025-03-24: n_train=700043 n_val=73324 train_end=2024-11-20 val_end=2025-03-06 (max label expiry 2025-03-14 < signal date); cumulative train time 393s
+- [2026-10-18 21:18:40] retrain r034 at 2025-04-22: n_train=705719 n_val=72941 train_end=2024-12-18 val_end=2025-04-03 (max label expiry 2025-04-14 < signal date); cumulative train time 420s
+- [2026-10-18 21:19:15] retrain r035 at 2025-05-23: n_train=712385 n_val=73439 train_end=2025-01-16 val_end=2025-05-07 (max label expiry 2025-05-15 < signal date); cumulative train time 454s
+- [2026-10-18 21:19:30] retrain r036 at 2025-06-23: n_train=714355 n_val=73683 train_end=2025-02-21 val_end=2025-06-05 (max label expiry 2025-06-13 < signal date); cumulative train time 470s
+- [2026-10-18 21:19:47] retrain r037 at 2025-07-21: n_train=717974 n_val=73619 train_end=2025-03-21 val_end=2025-07-03 (max label expiry 2025-07-11 < signal date); cumulative train time 487s
+- [2026-10-18 21:20:06] retrain r038 at 2025-08-18: n_train=721731 n_val=73803 train_end=2025-04-21 val_end=2025-07-31 (max label expiry 2025-08-08 < signal date); cumulative train time 506s
+- [2026-10-18 21:20:22] retrain r039 at 2025-09-15: n_train=725597 n_val=74278 train_end=2025-05-22 val_end=2025-08-28 (max label expiry 2025-09-05 < signal date); cumulative train time 521s
+- [2026-10-18 21:20:41] retrain r040 at 2025-10-21: n_train=728491 n_val=74856 train_end=2025-06-20 val_end=2025-09-25 (max label expiry 2025-10-13 < signal date); cumulative train time 540s
+- [2026-10-18 21:20:52] retrain r041 at 2025-11-18: n_train=732325 n_val=75117 train_end=2025-07-18 val_end=2025-10-31 (max label expiry 2025-11-10 < signal date); cumulative train time 551s
+- [2026-10-18 21:21:02] retrain r042 at 2025-12-16: n_train=735230 n_val=75055 train_end=2025-08-15 val_end=2025-11-28 (max label expiry 2025-12-08 < signal date); cumulative train time 561s
+- [2026-10-18 21:21:13] retrain r043 at 2026-01-15: n_train=740696 n_val=74343 train_end=2025-09-12 val_end=2025-12-26 (max label expiry 2026-01-07 < signal date); cumulative train time 571s
+- [2026-10-18 21:21:22] retrain r044 at 2026-02-12: n_train=750466 n_val=74115 train_end=2025-10-20 val_end=2026-01-27 (max label expiry 2026-02-04 < signal date); cumulative train time 581s
+- [2026-10-18 21:21:38] retrain r045 at 2026-03-20: n_train=746156 n_val=74103 train_end=2025-11-17 val_end=2026-03-04 (max label expiry 2026-03-12 < signal date); cumulative train time 596s
+- [2026-10-18 21:21:54] retrain r046 at 2026-04-20: n_train=746414 n_val=74272 train_end=2025-12-15 val_end=2026-04-01 (max label expiry 2026-04-10 < signal date); cumulative train time 613s
+- [2026-10-18 21:22:09] retrain r047 at 2026-05-21: n_train=751463 n_val=73869 train_end=2026-01-14 val_end=2026-04-30 (max label expiry 2026-05-13 < signal date); cumulative train time 627s
+- [2026-10-18 21:22:22] retrain r048 at 2026-06-18: n_train=755695 n_val=73466 train_end=2026-02-11 val_end=2026-06-02 (max label expiry 2026-06-10 < signal date); cumulative train time 641s
+- [2026-10-18 21:22:42] retrain r049 at 2026-07-17: n_train=760330 n_val=73167 train_end=2026-03-19 val_end=2026-07-01 (max label expiry 2026-07-09 < signal date); cumulative train time 661s
+- [2026-10-18 21:23:00] retrain r050 at 2026-08-14: n_train=763256 n_val=73014 train_end=2026-04-17 val_end=2026-07-29 (max label expiry 2026-08-06 < signal date); cumulative train time 679s
+- [2026-10-18 21:23:23] retrain r051 at 2026-09-11: n_train=765670 n_val=72425 train_end=2026-05-20 val_end=2026-08-26 (max label expiry 2026-09-03 < signal date); cumulative train time 701s
+- [2026-10-18 21:23:23] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 207 periods=True
+- [2026-10-18 21:23:27] simulation done in 4s
+- [2026-10-18 21:23:27] EqualWeight c0: max |diff| vs P0 file = 9.71e-17
+- [2026-10-18 21:23:27] EqualWeight c30: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 21:23:27] EqualWeight c60: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 21:23:28] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_mlp_oos_predictions.parquet rows=310086 (periods=207, codes=1498)
+- [2026-10-18 21:23:42] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_mlp_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; latest model train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 21:23:42] run mlp finished in 733s
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] Environment: .venv had no torch. CUDA wheel (cu128, 2.7 GB) abandoned (~0.4 MB/s => >1.5 h, then SSL EOF). Installed CPU wheel torch 2.14.1+cpu from download.pytorch.org/whl/cpu (pip also installed filelock/fsspec/jinja2/mpmath/networkx/setuptools 78.1.0/sympy). GPU present: NVIDIA GeForce RTX 5070 Ti 16 GB, driver 610.88, but torch.cuda.is_available()=False (CPU wheel) -> CPU used. 20 logical cores, torch threads fixed to 4.
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] Smoke test (5 signals, seed 42, 2 retrains): pools/signals identical to P0; HGB Top50 reproduced inside this pipeline for 4/4 periods (identity of features/labels/pool/model-input proven); EqualWeight returns equal to P0 file (max diff 1e-16).
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] Full run launched: 52 retrains x 3 seeds, 207 periods (log dl\logs\run_mlp.log). Finished in 733 s (training 701 s CPU). Latest-date models (3 seeds) trained on 767,891 rows, validation 71,948 rows; train_end 2026-06-16, val_end 2026-09-22, max label expiry 2026-10-08 < 2026-10-16.
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] dl_compare.py: harness self-check - re-simulating P0 HGB/LGBM/Ridge/Mom/Rev Top50 sets with this harness reproduces the P0 file at 0.30% to 1e-16 (same engine, same cost convention). P0 grid had 0.10% not 0.15%: MLP has both; P0 0.15% obtained by re-simulating P0's frozen Top50 sets.
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] Tests: p1_dl\tests\test_dl_mlp.py 11 passed (incl. 1 negative control for the no-gap split and 1 for label leakage detection, 2 artifact tests); P0 leakage_unit_tests 45 passed (re-run after torch install).
+- [2026-10-18 21:26 (written retrospectively; run times above are script-stamped)] RESULT (headline 0.30% RT, 207 periods): MLP_mean ann 8.61%, Sharpe 0.43, MDD -35.3%, RankIC 0.0773, net excess/period +0.12% (t 0.85, HAC4 0.69, boot95 [-0.21%,+0.47%]) vs P0 HGB 7.85%/0.40/-35.0%/0.0746/+0.10% (t 0.72). Paired MLP_mean-HGB net diff +0.02%/period t=0.18 (not significant). MAE not applicable (ranking task, no regression head). 2025-2026 not a blind set.
+
+## B2 PRE-REGISTRATION (GRU; written before any GRU test-period result existed)
+- Input: last 60 rows of the master calendar ending at signal day t (suspended/not-listed days kept as rows: value 0 + mask=1; no compression). 6 value channels (adjusted 1d return, (high-low)/ex-rights prev close, close/open-1, log volume ratio vs trailing 20d mean excluding today, same-day cross-sectional z of log1p(amount), log1p(turnover rate; missing -> 0)) + 1 mask channel = 7.
+- Scaling: per-channel mean/std fitted only on cells dated [lo-59..te] of each retrain's training segment; clip [-5,5]; NaN->0; masked cells->0.
+- Model: GRU 7->64, 1 layer, last hidden -> dropout 0.2 -> Linear. Target/loss/val/purge/early-stop/seeds/walk-forward/pool/simulator identical to B1. AdamW lr 1e-3, wd 1e-4, batch 2048, grad-clip 1, max 12 epochs, patience 3.
+- Compute-driven degradation rule (decided BEFORE results, from timing only): if full 52x3 retrains exceed ~2.5 h on the available device -> (1) GPU if a verified CUDA torch exists in an isolated venv, else (2) epoch-rotating uniform training subsample (every k-th (date+stock) cell per epoch, training only, evaluation full), then (3) seed 42 only first. Any degradation will be stated in the report.
+- Headline remains 0.30% round trip, ensemble of seeds = mean of raw scores. No tuning after seeing test results.
+
+## B2 log
+- [2026-10-18 21:32:45] run gru_smoke: torch 2.14.1+cpu, device=cpu, seeds=[42], subsample=4, max_epochs=3, max_signals=5, threads=12
+- [2026-10-18 21:32:54] world + sequence features built: T=1400 N=1498 channels=6 in 10s
+- [2026-10-18 21:33:09] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 15s
+- [2026-10-18 21:33:24] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 30s
+- [2026-10-18 21:33:24] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 5 periods=True
+- [2026-10-18 21:33:25] simulation done in 0s
+- [2026-10-18 21:33:25] EqualWeight c0: max |diff| vs P0 file = 6.85e-17
+- [2026-10-18 21:33:25] EqualWeight c30: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 21:33:25] EqualWeight c60: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 21:33:25] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_gru_oos_predictions.parquet rows=7490 (periods=5, codes=1498)
+- [2026-10-18 21:34:09] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_gru_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 21:34:09] run gru_smoke finished in 84s
+- [2026-10-18 21:34:34] run gru_cpu_sub4: torch 2.14.1+cpu, device=cpu, seeds=[42], subsample=4, max_epochs=12, max_signals=0, threads=10
+- [2026-10-18 21:34:44] world + sequence features built: T=1400 N=1498 channels=6 in 10s
+- [2026-10-18 21:35:23] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 39s
+- [2026-10-18 21:35:59] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 75s
+- [2026-10-18 21:36:38] retrain r002 at 2022-08-26: n_train=250277 n_val=61400 train_end=2022-04-29 val_end=2022-08-10 (max label expiry 2022-08-18 < signal date); cumulative train time 113s
+- [2026-10-18 21:37:45] retrain r003 at 2022-09-26: n_train=269951 n_val=63152 train_end=2022-06-01 val_end=2022-09-07 (max label expiry 2022-09-16 < signal date); cumulative train time 180s
+- [2026-10-18 21:38:41] retrain r004 at 2022-10-31: n_train=290237 n_val=63390 train_end=2022-06-30 val_end=2022-10-13 (max label expiry 2022-10-21 < signal date); cumulative train time 235s
+- [2026-10-18 21:39:27] retrain r005 at 2022-11-28: n_train=311273 n_val=62917 train_end=2022-07-28 val_end=2022-11-10 (max label expiry 2022-11-18 < signal date); cumulative train time 282s
+- [2026-10-18 21:40:30] retrain r006 at 2022-12-26: n_train=332325 n_val=63244 train_end=2022-08-25 val_end=2022-12-08 (max label expiry 2022-12-16 < signal date); cumulative train time 344s
+- [2026-10-18 21:41:36] retrain r007 at 2023-01-31: n_train=353848 n_val=63486 train_end=2022-09-23 val_end=2023-01-06 (max label expiry 2023-01-16 < signal date); cumulative train time 410s
+- [2026-10-18 21:42:37] retrain r008 at 2023-02-28: n_train=374176 n_val=63387 train_end=2022-10-28 val_end=2023-02-10 (max label expiry 2023-02-20 < signal date); cumulative train time 471s
+- [2026-10-18 21:43:57] retrain r009 at 2023-03-28: n_train=395409 n_val=64034 train_end=2022-11-25 val_end=2023-03-10 (max label expiry 2023-03-20 < signal date); cumulative train time 550s
+- [2026-10-18 21:44:48] retrain r010 at 2023-04-26: n_train=417291 n_val=65086 train_end=2022-12-23 val_end=2023-04-10 (max label expiry 2023-04-18 < signal date); cumulative train time 600s
+- [2026-10-18 21:46:09] retrain r011 at 2023-05-29: n_train=437494 n_val=66648 train_end=2023-01-30 val_end=2023-05-11 (max label expiry 2023-05-19 < signal date); cumulative train time 681s
+- [2026-10-18 21:47:35] retrain r012 at 2023-06-28: n_train=459203 n_val=65160 train_end=2023-02-27 val_end=2023-06-08 (max label expiry 2023-06-16 < signal date); cumulative train time 767s
+- [2026-10-18 21:48:37] retrain r013 at 2023-07-26: n_train=481681 n_val=63784 train_end=2023-03-27 val_end=2023-07-10 (max label expiry 2023-07-18 < signal date); cumulative train time 828s
+- [2026-10-18 21:49:45] retrain r014 at 2023-08-23: n_train=503826 n_val=63355 train_end=2023-04-25 val_end=2023-08-07 (max label expiry 2023-08-15 < signal date); cumulative train time 896s
+- [2026-10-18 21:50:56] retrain r015 at 2023-09-20: n_train=525212 n_val=64233 train_end=2023-05-26 val_end=2023-09-04 (max label expiry 2023-09-12 < signal date); cumulative train time 966s
+- [2026-10-18 21:51:57] retrain r016 at 2023-10-26: n_train=545936 n_val=65493 train_end=2023-06-27 val_end=2023-10-10 (max label expiry 2023-10-18 < signal date); cumulative train time 1028s
+- [2026-10-18 21:53:22] retrain r017 at 2023-11-23: n_train=567187 n_val=66184 train_end=2023-07-25 val_end=2023-11-07 (max label expiry 2023-11-15 < signal date); cumulative train time 1112s
+- [2026-10-18 21:54:18] retrain r018 at 2023-12-21: n_train=588919 n_val=67407 train_end=2023-08-22 val_end=2023-12-05 (max label expiry 2023-12-13 < signal date); cumulative train time 1167s
+- [2026-10-18 21:55:26] retrain r019 at 2024-01-19: n_train=611007 n_val=69089 train_end=2023-09-19 val_end=2024-01-03 (max label expiry 2024-01-11 < signal date); cumulative train time 1235s
+- [2026-10-18 21:56:52] retrain r020 at 2024-02-26: n_train=632999 n_val=70869 train_end=2023-10-25 val_end=2024-01-31 (max label expiry 2024-02-08 < signal date); cumulative train time 1321s
+- [2026-10-18 21:57:41] retrain r021 at 2024-03-25: n_train=655670 n_val=72470 train_end=2023-11-22 val_end=2024-03-07 (max label expiry 2024-03-15 < signal date); cumulative train time 1369s
+- [2026-10-18 21:58:30] retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 1418s
+- [2026-10-18 22:00:26] B2 compute: CPU-only timing (12 threads): ~40-100 s per model at 4x subsample, projected >4 h for 3 seeds at full data -> exceeds the 2.5 h rule. Insurance CPU run (seed 42, subsample 4, tag gru_cpu_sub4) was started and STOPPED at r022 (~1418 s) once CUDA torch worked; its partial checkpoints are not used for any reported result.
+- [2026-10-18 22:00:26] B2 CUDA: isolated venv D:\choice_quant_starter\.venv_cuda (torch 2.11.0+cu128, pandas 2.3.3/numpy 2.5.4/pyarrow/scipy pinned to the CPU venv versions); torch.cuda.is_available()=True on RTX 5070 Ti (sm_120), GRU fwd/bwd verified. Full-data epoch ~2 s on GPU -> NO degradation needed: full training data (subsample=1), 3 seeds, 52 retrains. cudnn deterministic=True (GPU results are same-seed repeatable on this machine but not bit-identical to CPU).
+- [2026-10-18 22:00:27] run gru: torch 2.11.0+cu128, device=cuda, seeds=[42, 43, 44], subsample=1, max_epochs=12, max_signals=0, threads=8
+- [2026-10-18 22:00:37] world + sequence features built: T=1400 N=1498 channels=6 in 9s
+- [2026-10-18 22:00:47] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 10s
+- [2026-10-18 22:00:56] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 19s
+- [2026-10-18 22:01:06] retrain r002 at 2022-08-26: n_train=250277 n_val=61400 train_end=2022-04-29 val_end=2022-08-10 (max label expiry 2022-08-18 < signal date); cumulative train time 29s
+- [2026-10-18 22:01:14] retrain r003 at 2022-09-26: n_train=269951 n_val=63152 train_end=2022-06-01 val_end=2022-09-07 (max label expiry 2022-09-16 < signal date); cumulative train time 37s
+- [2026-10-18 22:01:24] retrain r004 at 2022-10-31: n_train=290237 n_val=63390 train_end=2022-06-30 val_end=2022-10-13 (max label expiry 2022-10-21 < signal date); cumulative train time 46s
+- [2026-10-18 22:01:36] retrain r005 at 2022-11-28: n_train=311273 n_val=62917 train_end=2022-07-28 val_end=2022-11-10 (max label expiry 2022-11-18 < signal date); cumulative train time 58s
+- [2026-10-18 22:01:46] retrain r006 at 2022-12-26: n_train=332325 n_val=63244 train_end=2022-08-25 val_end=2022-12-08 (max label expiry 2022-12-16 < signal date); cumulative train time 68s
+- [2026-10-18 22:01:58] retrain r007 at 2023-01-31: n_train=353848 n_val=63486 train_end=2022-09-23 val_end=2023-01-06 (max label expiry 2023-01-16 < signal date); cumulative train time 79s
+- [2026-10-18 22:02:12] retrain r008 at 2023-02-28: n_train=374176 n_val=63387 train_end=2022-10-28 val_end=2023-02-10 (max label expiry 2023-02-20 < signal date); cumulative train time 93s
+- [2026-10-18 22:02:23] retrain r009 at 2023-03-28: n_train=395409 n_val=64034 train_end=2022-11-25 val_end=2023-03-10 (max label expiry 2023-03-20 < signal date); cumulative train time 104s
+- [2026-10-18 22:02:37] retrain r010 at 2023-04-26: n_train=417291 n_val=65086 train_end=2022-12-23 val_end=2023-04-10 (max label expiry 2023-04-18 < signal date); cumulative train time 118s
+- [2026-10-18 22:03:03] retrain r011 at 2023-05-29: n_train=437494 n_val=66648 train_end=2023-01-30 val_end=2023-05-11 (max label expiry 2023-05-19 < signal date); cumulative train time 144s
+- [2026-10-18 22:03:27] retrain r012 at 2023-06-28: n_train=459203 n_val=65160 train_end=2023-02-27 val_end=2023-06-08 (max label expiry 2023-06-16 < signal date); cumulative train time 168s
+- [2026-10-18 22:03:55] retrain r013 at 2023-07-26: n_train=481681 n_val=63784 train_end=2023-03-27 val_end=2023-07-10 (max label expiry 2023-07-18 < signal date); cumulative train time 196s
+- [2026-10-18 22:04:12] retrain r014 at 2023-08-23: n_train=503826 n_val=63355 train_end=2023-04-25 val_end=2023-08-07 (max label expiry 2023-08-15 < signal date); cumulative train time 212s
+- [2026-10-18 22:04:28] retrain r015 at 2023-09-20: n_train=525212 n_val=64233 train_end=2023-05-26 val_end=2023-09-04 (max label expiry 2023-09-12 < signal date); cumulative train time 228s
+- [2026-10-18 22:04:42] retrain r016 at 2023-10-26: n_train=545936 n_val=65493 train_end=2023-06-27 val_end=2023-10-10 (max label expiry 2023-10-18 < signal date); cumulative train time 242s
+- [2026-10-18 22:05:12] retrain r017 at 2023-11-23: n_train=567187 n_val=66184 train_end=2023-07-25 val_end=2023-11-07 (max label expiry 2023-11-15 < signal date); cumulative train time 271s
+- [2026-10-18 22:05:35] retrain r018 at 2023-12-21: n_train=588919 n_val=67407 train_end=2023-08-22 val_end=2023-12-05 (max label expiry 2023-12-13 < signal date); cumulative train time 294s
+- [2026-10-18 22:06:16] retrain r019 at 2024-01-19: n_train=611007 n_val=69089 train_end=2023-09-19 val_end=2024-01-03 (max label expiry 2024-01-11 < signal date); cumulative train time 335s
+- [2026-10-18 22:06:34] retrain r020 at 2024-02-26: n_train=632999 n_val=70869 train_end=2023-10-25 val_end=2024-01-31 (max label expiry 2024-02-08 < signal date); cumulative train time 353s
+- [2026-10-18 22:07:10] retrain r021 at 2024-03-25: n_train=655670 n_val=72470 train_end=2023-11-22 val_end=2024-03-07 (max label expiry 2024-03-15 < signal date); cumulative train time 388s
+- [2026-10-18 22:07:47] retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 426s
+- [2026-10-18 22:08:17] retrain r023 at 2024-05-27: n_train=673232 n_val=72598 train_end=2024-01-18 val_end=2024-05-09 (max label expiry 2024-05-17 < signal date); cumulative train time 455s
+- [2026-10-18 22:08:50] retrain r024 at 2024-06-25: n_train=679401 n_val=71047 train_end=2024-02-23 val_end=2024-06-06 (max label expiry 2024-06-17 < signal date); cumulative train time 488s
+- [2026-10-18 22:09:21] retrain r025 at 2024-07-23: n_train=685450 n_val=68084 train_end=2024-03-22 val_end=2024-07-05 (max label expiry 2024-07-15 < signal date); cumulative train time 519s
+- [2026-10-18 22:09:45] retrain r026 at 2024-08-20: n_train=690574 n_val=63783 train_end=2024-04-23 val_end=2024-08-02 (max label expiry 2024-08-12 < signal date); cumulative train time 543s
+- [2026-10-18 22:10:08] retrain r027 at 2024-09-19: n_train=694514 n_val=59959 train_end=2024-05-24 val_end=2024-08-30 (max label expiry 2024-09-09 < signal date); cumulative train time 565s
+- [2026-10-18 22:10:29] retrain r028 at 2024-10-24: n_train=699254 n_val=57525 train_end=2024-06-24 val_end=2024-10-08 (max label expiry 2024-10-16 < signal date); cumulative train time 586s
+- [2026-10-18 22:10:51] retrain r029 at 2024-11-21: n_train=701848 n_val=61625 train_end=2024-07-22 val_end=2024-11-05 (max label expiry 2024-11-13 < signal date); cumulative train time 608s
+- [2026-10-18 22:11:14] retrain r030 at 2024-12-19: n_train=701590 n_val=67488 train_end=2024-08-19 val_end=2024-12-03 (max label expiry 2024-12-11 < signal date); cumulative train time 631s
+- [2026-10-18 22:11:41] retrain r031 at 2025-01-17: n_train=699435 n_val=73693 train_end=2024-09-18 val_end=2024-12-31 (max label expiry 2025-01-09 < signal date); cumulative train time 658s
+- [2026-10-18 22:12:01] retrain r032 at 2025-02-24: n_train=695839 n_val=74229 train_end=2024-10-23 val_end=2025-02-06 (max label expiry 2025-02-14 < signal date); cumulative train time 677s
+- [2026-10-18 22:12:26] retrain r033 at 2025-03-24: n_train=700043 n_val=73324 train_end=2024-11-20 val_end=2025-03-06 (max label expiry 2025-03-14 < signal date); cumulative train time 701s
+- [2026-10-18 22:12:45] retrain r034 at 2025-04-22: n_train=705719 n_val=72941 train_end=2024-12-18 val_end=2025-04-03 (max label expiry 2025-04-14 < signal date); cumulative train time 721s
+- [2026-10-18 22:13:06] retrain r035 at 2025-05-23: n_train=712385 n_val=73439 train_end=2025-01-16 val_end=2025-05-07 (max label expiry 2025-05-15 < signal date); cumulative train time 741s
+- [2026-10-18 22:13:24] retrain r036 at 2025-06-23: n_train=714355 n_val=73683 train_end=2025-02-21 val_end=2025-06-05 (max label expiry 2025-06-13 < signal date); cumulative train time 759s
+- [2026-10-18 22:13:43] retrain r037 at 2025-07-21: n_train=717974 n_val=73619 train_end=2025-03-21 val_end=2025-07-03 (max label expiry 2025-07-11 < signal date); cumulative train time 778s
+- [2026-10-18 22:14:05] retrain r038 at 2025-08-18: n_train=721731 n_val=73803 train_end=2025-04-21 val_end=2025-07-31 (max label expiry 2025-08-08 < signal date); cumulative train time 799s
+- [2026-10-18 22:14:27] retrain r039 at 2025-09-15: n_train=725597 n_val=74278 train_end=2025-05-22 val_end=2025-08-28 (max label expiry 2025-09-05 < signal date); cumulative train time 821s
+- [2026-10-18 22:14:52] retrain r040 at 2025-10-21: n_train=728491 n_val=74856 train_end=2025-06-20 val_end=2025-09-25 (max label expiry 2025-10-13 < signal date); cumulative train time 846s
+- [2026-10-18 22:15:11] retrain r041 at 2025-11-18: n_train=732325 n_val=75117 train_end=2025-07-18 val_end=2025-10-31 (max label expiry 2025-11-10 < signal date); cumulative train time 865s
+- [2026-10-18 22:15:31] retrain r042 at 2025-12-16: n_train=735230 n_val=75055 train_end=2025-08-15 val_end=2025-11-28 (max label expiry 2025-12-08 < signal date); cumulative train time 884s
+- [2026-10-18 22:15:52] retrain r043 at 2026-01-15: n_train=740696 n_val=74343 train_end=2025-09-12 val_end=2025-12-26 (max label expiry 2026-01-07 < signal date); cumulative train time 905s
+- [2026-10-18 22:16:19] retrain r044 at 2026-02-12: n_train=750466 n_val=74115 train_end=2025-10-20 val_end=2026-01-27 (max label expiry 2026-02-04 < signal date); cumulative train time 933s
+- [2026-10-18 22:16:49] retrain r045 at 2026-03-20: n_train=746156 n_val=74103 train_end=2025-11-17 val_end=2026-03-04 (max label expiry 2026-03-12 < signal date); cumulative train time 962s
+- [2026-10-18 22:17:16] retrain r046 at 2026-04-20: n_train=746414 n_val=74272 train_end=2025-12-15 val_end=2026-04-01 (max label expiry 2026-04-10 < signal date); cumulative train time 989s
+- [2026-10-18 22:17:48] retrain r047 at 2026-05-21: n_train=751463 n_val=73869 train_end=2026-01-14 val_end=2026-04-30 (max label expiry 2026-05-13 < signal date); cumulative train time 1020s
+- [2026-10-18 22:18:12] retrain r048 at 2026-06-18: n_train=755695 n_val=73466 train_end=2026-02-11 val_end=2026-06-02 (max label expiry 2026-06-10 < signal date); cumulative train time 1045s
+- [2026-10-18 22:18:18] B2 progress check after interruption: GRU background process still ALIVE (PIDs in logs\gru_pids.txt, independent of the shell). 48/52 retrains done (146 checkpoint files = 48x3 seeds + 2 partial of r048), ~21 s per retrain (3 seeds, GPU), cumulative training 1020 s, est. remaining <2 min training + simulation/parquet/latest (~2 min).
+- [2026-10-18 22:18:39] retrain r049 at 2026-07-17: n_train=760330 n_val=73167 train_end=2026-03-19 val_end=2026-07-01 (max label expiry 2026-07-09 < signal date); cumulative train time 1072s
+- [2026-10-18 22:18:59] retrain r050 at 2026-08-14: n_train=763256 n_val=73014 train_end=2026-04-17 val_end=2026-07-29 (max label expiry 2026-08-06 < signal date); cumulative train time 1091s
+- [2026-10-18 22:19:20] retrain r051 at 2026-09-11: n_train=765670 n_val=72425 train_end=2026-05-20 val_end=2026-08-26 (max label expiry 2026-09-03 < signal date); cumulative train time 1111s
+- [2026-10-18 22:19:20] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 207 periods=True
+- [2026-10-18 22:19:24] simulation done in 4s
+- [2026-10-18 22:19:24] EqualWeight c0: max |diff| vs P0 file = 9.71e-17
+- [2026-10-18 22:19:24] EqualWeight c30: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 22:19:24] EqualWeight c60: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 22:19:25] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_gru_oos_predictions.parquet rows=310086 (periods=207, codes=1498)
+- [2026-10-18 22:19:45] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_gru_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 22:19:45] run gru finished in 1158s
+- [2026-10-18 22:19:56] B2 GRU walk-forward FINISHED (52/52 retrains x 3 seeds, 1158 s total). Next: dl_compare_seq.py, tests.
+- [2026-10-18 22:21:13] B2 DONE: dl_compare_seq.py run; tests 21 passed (gru 10 + mlp 11), P0 45 passed. GRU_mean 0.30%: ann 5.38%, Sharpe 0.33, MDD -44.0%, RankIC 0.0705, net excess +0.10%/period t 0.52 (HAC 0.63, boot [-0.18%,+0.41%]); paired vs HGB t -0.02, vs MLP t -0.12. No degradation (GPU, full data, 3 seeds, 1158 s). dl_models_report.md written (B3 not done).
+
+## B3 PRE-REGISTRATION (small Transformer Encoder; written before any TF test-period result existed)
+- Architecture: Linear(7->64) input projection + fixed sinusoidal positional encoding (length 60); 2 pre-LayerNorm TransformerEncoder layers, d_model 64, 4 heads, FFN 128, GELU, dropout 0.2, final LayerNorm; src_key_padding_mask = mask channel (suspended/missing days are never attended to).
+- Pooling (chosen now, not after results): representation at the LAST time step t (always a valid bar for eligible_asof_t rows) -> dropout 0.2 -> Linear(64,1). (Masked mean pooling is NOT run.)
+- Everything else identical to GRU/B2: 7-channel sequence, training-segment-only scaling, yw/train-std target with MSE, validation = last 60 days of the 3y window, 10-day gap, patience 3, max 12 epochs, AdamW lr 1e-3 wd 1e-4 batch 2048 grad-clip 1, same pool/simulator/costs/retrain schedule.
+- Seeds: run seed 42 for all 52 retrains first; if total wall time < 30 min, also run seeds 43 and 44 (pre-registered, reported regardless of result). Single configuration, no tuning.
+
+## B3 log
+- [2026-10-18 22:22:44] run tf_smoke: torch 2.11.0+cu128, device=cuda, seeds=[42], subsample=1, max_epochs=3, max_signals=5, threads=8
+- [2026-10-18 22:22:54] world + sequence features built: T=1400 N=1498 channels=6 in 10s
+- [2026-10-18 22:23:03] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 8s
+- [2026-10-18 22:23:11] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 17s
+- [2026-10-18 22:23:11] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 5 periods=True
+- [2026-10-18 22:23:11] simulation done in 0s
+- [2026-10-18 22:23:11] EqualWeight c0: max |diff| vs P0 file = 6.85e-17
+- [2026-10-18 22:23:11] EqualWeight c30: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 22:23:11] EqualWeight c60: max |diff| vs P0 file = 9.37e-17
+- [2026-10-18 22:23:11] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_tf_oos_predictions.parquet rows=7490 (periods=5, codes=1498)
+- [2026-10-18 22:23:37] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_smoke_tf_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 22:23:37] run tf_smoke finished in 53s
+- [2026-10-18 22:23:52] B3 smoke test (5 signals, 2 retrains, seed 42, 3 epochs, GPU): identity with P0 pools OK, ~8-9 s per early retrain. Launched seed-42 full walk-forward as independent background process (PID in logs\tf_pids.txt); resumable from checkpoints\tf\.
+- [2026-10-18 22:23:53] run tf: torch 2.11.0+cu128, device=cuda, seeds=[42], subsample=1, max_epochs=12, max_signals=0, threads=8
+- [2026-10-18 22:24:03] world + sequence features built: T=1400 N=1498 channels=6 in 10s
+- [2026-10-18 22:24:24] retrain r000 at 2022-07-01: n_train=209038 n_val=60570 train_end=2022-03-02 val_end=2022-06-15 (max label expiry 2022-06-23 < signal date); cumulative train time 21s
+- [2026-10-18 22:24:41] retrain r001 at 2022-07-29: n_train=229904 n_val=60552 train_end=2022-03-30 val_end=2022-07-13 (max label expiry 2022-07-21 < signal date); cumulative train time 38s
+- [2026-10-18 22:24:57] retrain r002 at 2022-08-26: n_train=250277 n_val=61400 train_end=2022-04-29 val_end=2022-08-10 (max label expiry 2022-08-18 < signal date); cumulative train time 53s
+- [2026-10-18 22:25:10] retrain r003 at 2022-09-26: n_train=269951 n_val=63152 train_end=2022-06-01 val_end=2022-09-07 (max label expiry 2022-09-16 < signal date); cumulative train time 66s
+- [2026-10-18 22:25:31] retrain r004 at 2022-10-31: n_train=290237 n_val=63390 train_end=2022-06-30 val_end=2022-10-13 (max label expiry 2022-10-21 < signal date); cumulative train time 86s
+- [2026-10-18 22:25:49] retrain r005 at 2022-11-28: n_train=311273 n_val=62917 train_end=2022-07-28 val_end=2022-11-10 (max label expiry 2022-11-18 < signal date); cumulative train time 105s
+- [2026-10-18 22:26:13] retrain r006 at 2022-12-26: n_train=332325 n_val=63244 train_end=2022-08-25 val_end=2022-12-08 (max label expiry 2022-12-16 < signal date); cumulative train time 128s
+- [2026-10-18 22:26:33] retrain r007 at 2023-01-31: n_train=353848 n_val=63486 train_end=2022-09-23 val_end=2023-01-06 (max label expiry 2023-01-16 < signal date); cumulative train time 148s
+- [2026-10-18 22:26:56] retrain r008 at 2023-02-28: n_train=374176 n_val=63387 train_end=2022-10-28 val_end=2023-02-10 (max label expiry 2023-02-20 < signal date); cumulative train time 170s
+- [2026-10-18 22:27:28] retrain r009 at 2023-03-28: n_train=395409 n_val=64034 train_end=2022-11-25 val_end=2023-03-10 (max label expiry 2023-03-20 < signal date); cumulative train time 202s
+- [2026-10-18 22:28:03] retrain r010 at 2023-04-26: n_train=417291 n_val=65086 train_end=2022-12-23 val_end=2023-04-10 (max label expiry 2023-04-18 < signal date); cumulative train time 237s
+- [2026-10-18 22:28:33] retrain r011 at 2023-05-29: n_train=437494 n_val=66648 train_end=2023-01-30 val_end=2023-05-11 (max label expiry 2023-05-19 < signal date); cumulative train time 267s
+- [2026-10-18 22:29:16] retrain r012 at 2023-06-28: n_train=459203 n_val=65160 train_end=2023-02-27 val_end=2023-06-08 (max label expiry 2023-06-16 < signal date); cumulative train time 309s
+- [2026-10-18 22:29:49] retrain r013 at 2023-07-26: n_train=481681 n_val=63784 train_end=2023-03-27 val_end=2023-07-10 (max label expiry 2023-07-18 < signal date); cumulative train time 341s
+- [2026-10-18 22:30:18] retrain r014 at 2023-08-23: n_train=503826 n_val=63355 train_end=2023-04-25 val_end=2023-08-07 (max label expiry 2023-08-15 < signal date); cumulative train time 370s
+- [2026-10-18 22:30:53] retrain r015 at 2023-09-20: n_train=525212 n_val=64233 train_end=2023-05-26 val_end=2023-09-04 (max label expiry 2023-09-12 < signal date); cumulative train time 406s
+- [2026-10-18 22:31:19] retrain r016 at 2023-10-26: n_train=545936 n_val=65493 train_end=2023-06-27 val_end=2023-10-10 (max label expiry 2023-10-18 < signal date); cumulative train time 430s
+- [2026-10-18 22:31:58] retrain r017 at 2023-11-23: n_train=567187 n_val=66184 train_end=2023-07-25 val_end=2023-11-07 (max label expiry 2023-11-15 < signal date); cumulative train time 469s
+- [2026-10-18 22:32:45] retrain r018 at 2023-12-21: n_train=588919 n_val=67407 train_end=2023-08-22 val_end=2023-12-05 (max label expiry 2023-12-13 < signal date); cumulative train time 516s
+- [2026-10-18 22:33:13] retrain r019 at 2024-01-19: n_train=611007 n_val=69089 train_end=2023-09-19 val_end=2024-01-03 (max label expiry 2024-01-11 < signal date); cumulative train time 544s
+- [2026-10-18 22:33:42] retrain r020 at 2024-02-26: n_train=632999 n_val=70869 train_end=2023-10-25 val_end=2024-01-31 (max label expiry 2024-02-08 < signal date); cumulative train time 572s
+- [2026-10-18 22:34:11] retrain r021 at 2024-03-25: n_train=655670 n_val=72470 train_end=2023-11-22 val_end=2024-03-07 (max label expiry 2024-03-15 < signal date); cumulative train time 602s
+- [2026-10-18 22:35:21] retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 671s
+- [2026-10-18 22:36:14] B3 progress: retrain r022 at 2024-04-24: n_train=667584 n_val=72826 train_end=2023-12-20 val_end=2024-04-08 (max label expiry 2024-04-16 < signal date); cumulative train time 671s
+- [2026-10-18 22:36:23] retrain r023 at 2024-05-27: n_train=673232 n_val=72598 train_end=2024-01-18 val_end=2024-05-09 (max label expiry 2024-05-17 < signal date); cumulative train time 733s
+- [2026-10-18 22:37:17] retrain r024 at 2024-06-25: n_train=679401 n_val=71047 train_end=2024-02-23 val_end=2024-06-06 (max label expiry 2024-06-17 < signal date); cumulative train time 787s
+- [2026-10-18 22:38:34] retrain r025 at 2024-07-23: n_train=685450 n_val=68084 train_end=2024-03-22 val_end=2024-07-05 (max label expiry 2024-07-15 < signal date); cumulative train time 864s
+- [2026-10-18 22:39:13] retrain r026 at 2024-08-20: n_train=690574 n_val=63783 train_end=2024-04-23 val_end=2024-08-02 (max label expiry 2024-08-12 < signal date); cumulative train time 902s
+- [2026-10-18 22:39:53] retrain r027 at 2024-09-19: n_train=694514 n_val=59959 train_end=2024-05-24 val_end=2024-08-30 (max label expiry 2024-09-09 < signal date); cumulative train time 942s
+- [2026-10-18 22:40:34] retrain r028 at 2024-10-24: n_train=699254 n_val=57525 train_end=2024-06-24 val_end=2024-10-08 (max label expiry 2024-10-16 < signal date); cumulative train time 983s
+- [2026-10-18 22:41:55] retrain r029 at 2024-11-21: n_train=701848 n_val=61625 train_end=2024-07-22 val_end=2024-11-05 (max label expiry 2024-11-13 < signal date); cumulative train time 1063s
+- [2026-10-18 22:42:43] retrain r030 at 2024-12-19: n_train=701590 n_val=67488 train_end=2024-08-19 val_end=2024-12-03 (max label expiry 2024-12-11 < signal date); cumulative train time 1111s
+- [2026-10-18 22:43:23] retrain r031 at 2025-01-17: n_train=699435 n_val=73693 train_end=2024-09-18 val_end=2024-12-31 (max label expiry 2025-01-09 < signal date); cumulative train time 1151s
+- [2026-10-18 22:44:03] retrain r032 at 2025-02-24: n_train=695839 n_val=74229 train_end=2024-10-23 val_end=2025-02-06 (max label expiry 2025-02-14 < signal date); cumulative train time 1191s
+- [2026-10-18 22:44:44] retrain r033 at 2025-03-24: n_train=700043 n_val=73324 train_end=2024-11-20 val_end=2025-03-06 (max label expiry 2025-03-14 < signal date); cumulative train time 1231s
+- [2026-10-18 22:45:32] retrain r034 at 2025-04-22: n_train=705719 n_val=72941 train_end=2024-12-18 val_end=2025-04-03 (max label expiry 2025-04-14 < signal date); cumulative train time 1279s
+- [2026-10-18 22:46:05] retrain r035 at 2025-05-23: n_train=712385 n_val=73439 train_end=2025-01-16 val_end=2025-05-07 (max label expiry 2025-05-15 < signal date); cumulative train time 1311s
+- [2026-10-18 22:46:32] B3 progress: retrain r035 at 2025-05-23: n_train=712385 n_val=73439 train_end=2025-01-16 val_end=2025-05-07 (max label expiry 2025-05-15 < signal date); cumulative train time 1311s
+- [2026-10-18 22:46:37] retrain r036 at 2025-06-23: n_train=714355 n_val=73683 train_end=2025-02-21 val_end=2025-06-05 (max label expiry 2025-06-13 < signal date); cumulative train time 1344s
+- [2026-10-18 22:47:18] retrain r037 at 2025-07-21: n_train=717974 n_val=73619 train_end=2025-03-21 val_end=2025-07-03 (max label expiry 2025-07-11 < signal date); cumulative train time 1384s
+- [2026-10-18 22:47:51] retrain r038 at 2025-08-18: n_train=721731 n_val=73803 train_end=2025-04-21 val_end=2025-07-31 (max label expiry 2025-08-08 < signal date); cumulative train time 1417s
+- [2026-10-18 22:48:58] retrain r039 at 2025-09-15: n_train=725597 n_val=74278 train_end=2025-05-22 val_end=2025-08-28 (max label expiry 2025-09-05 < signal date); cumulative train time 1483s
+- [2026-10-18 22:49:57] retrain r040 at 2025-10-21: n_train=728491 n_val=74856 train_end=2025-06-20 val_end=2025-09-25 (max label expiry 2025-10-13 < signal date); cumulative train time 1542s
+- [2026-10-18 22:50:31] retrain r041 at 2025-11-18: n_train=732325 n_val=75117 train_end=2025-07-18 val_end=2025-10-31 (max label expiry 2025-11-10 < signal date); cumulative train time 1576s
+- [2026-10-18 22:51:14] retrain r042 at 2025-12-16: n_train=735230 n_val=75055 train_end=2025-08-15 val_end=2025-11-28 (max label expiry 2025-12-08 < signal date); cumulative train time 1619s
+- [2026-10-18 22:51:49] retrain r043 at 2026-01-15: n_train=740696 n_val=74343 train_end=2025-09-12 val_end=2025-12-26 (max label expiry 2026-01-07 < signal date); cumulative train time 1653s
+- [2026-10-18 22:52:41] retrain r044 at 2026-02-12: n_train=750466 n_val=74115 train_end=2025-10-20 val_end=2026-01-27 (max label expiry 2026-02-04 < signal date); cumulative train time 1705s
+- [2026-10-18 22:53:15] retrain r045 at 2026-03-20: n_train=746156 n_val=74103 train_end=2025-11-17 val_end=2026-03-04 (max label expiry 2026-03-12 < signal date); cumulative train time 1739s
+- [2026-10-18 22:54:41] retrain r046 at 2026-04-20: n_train=746414 n_val=74272 train_end=2025-12-15 val_end=2026-04-01 (max label expiry 2026-04-10 < signal date); cumulative train time 1824s
+- [2026-10-18 22:55:42] retrain r047 at 2026-05-21: n_train=751463 n_val=73869 train_end=2026-01-14 val_end=2026-04-30 (max label expiry 2026-05-13 < signal date); cumulative train time 1885s
+- [2026-10-18 22:56:34] retrain r048 at 2026-06-18: n_train=755695 n_val=73466 train_end=2026-02-11 val_end=2026-06-02 (max label expiry 2026-06-10 < signal date); cumulative train time 1937s
+- [2026-10-18 22:57:28] retrain r049 at 2026-07-17: n_train=760330 n_val=73167 train_end=2026-03-19 val_end=2026-07-01 (max label expiry 2026-07-09 < signal date); cumulative train time 1990s
+- [2026-10-18 22:58:02] retrain r050 at 2026-08-14: n_train=763256 n_val=73014 train_end=2026-04-17 val_end=2026-07-29 (max label expiry 2026-08-06 < signal date); cumulative train time 2025s
+- [2026-10-18 22:58:37] retrain r051 at 2026-09-11: n_train=765670 n_val=72425 train_end=2026-05-20 val_end=2026-08-26 (max label expiry 2026-09-03 < signal date); cumulative train time 2059s
+- [2026-10-18 22:58:37] identity vs P0 fixed_sina_adj: signals identical=True, eligible pools identical for all 207 periods=True
+- [2026-10-18 22:58:40] simulation done in 3s
+- [2026-10-18 22:58:40] EqualWeight c0: max |diff| vs P0 file = 9.71e-17
+- [2026-10-18 22:58:40] EqualWeight c30: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 22:58:40] EqualWeight c60: max |diff| vs P0 file = 9.97e-17
+- [2026-10-18 22:58:41] OOS predictions parquet: D:\choice_quant_starter\v2\p1_dl\scores\dl_tf_oos_predictions.parquet rows=310086 (periods=207, codes=1498)
+- [2026-10-18 22:59:15] latest scores D:\choice_quant_starter\v2\p1_dl\scores\dl_tf_scores_20261016.csv: rows=1498 eligible=1178 ranked=1178; train_end=2026-06-16 val_end=2026-09-22 max label expiry=2026-10-08 (< 2026-10-16)
+- [2026-10-18 22:59:15] run tf finished in 2122s
+- [2026-10-18 23:02:29] B3 DONE (seed 42 only: wall time 2122 s > 30 min pre-registered threshold, so seeds 43/44 NOT run): TF 0.30%: ann 5.46%, Sharpe 0.33, MDD -37.1%, RankIC 0.0776, net excess +0.07%/period t 0.46 (HAC 0.47, boot [-0.20%,+0.38%]); paired vs HGB t -0.23, vs MLP -0.32, vs GRU -0.20. Tests: TF 9 + GRU 10 + MLP 11 = 30 passed; P0 45 passed. dl_models_report.md section 8 added.

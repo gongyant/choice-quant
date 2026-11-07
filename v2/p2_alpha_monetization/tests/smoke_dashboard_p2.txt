@@ -1,0 +1,33 @@
+PASS page 概览 
+PASS page P2-A 信号解剖 
+PASS page P2-B 成本感知组合 
+PASS page P2-C Transformer 消融 
+PASS page P1 逐股页面入口 
+PASS page 报告与图 
+PASS A group 流动性(amt20 日内三分位) 
+PASS A group 流动性(amt20 绝对档) 
+PASS A group 波动率(vol20 日内三分位) 
+PASS A decile old_all 
+PASS B nav HGB C1_flat 
+PASS B nav GRU C3_realistic 
+PASS B nav Ridge C4_capacity_1e8 
+PASS C metric stability 
+PASS C metric ann_net_c2 
+PASS C metric alpha_c2_hac_t 
+PASS C scope seed42 
+PASS P1 lookup 600 
+PASS report p2a_alpha_anatomy_report.md 
+PASS report p2b_cost_aware_report.md 
+PASS report p2c_transformer_ablation_report.md 
+PASS figure last 
+PASS page 研究选股器 
+PASS screener disclaimer 
+PASS screener liquidity 1e8 
+PASS screener >=2 models top50 
+PASS screener sort A2 
+PASS screener exclusions 
+PASS screener stock detail 
+PASS screener realized LGBM 
+PASS screener empty filter 
+PASS screener industry 主要消费 
+total 5.3 s passed 32 of 32

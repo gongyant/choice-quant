@@ -1,0 +1,12 @@
+signal 0 2022-07-01
+signal 20 2022-11-28
+signal 40 2023-04-26
+signal 60 2023-09-20
+signal 80 2024-02-26
+signal 100 2024-07-23
+signal 120 2024-12-19
+signal 140 2025-05-23
+signal 160 2025-10-21
+signal 180 2026-03-20
+signal 200 2026-08-14
+replica check: {"rows": [207, 207], "same_dates": true, "maxdiff": 9.952975943416931e-17}

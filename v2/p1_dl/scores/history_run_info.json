@@ -1,0 +1,9 @@
+{
+ "n_signals": 207,
+ "first_signal": "2022-07-01",
+ "last_signal": "2026-09-28",
+ "n_model_ids": 156,
+ "rows": 930258,
+ "retrain_blocks": 52,
+ "seconds": 135
+}

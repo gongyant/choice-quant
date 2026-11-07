@@ -1,0 +1,10 @@
+tx_qfq_full signal 0 2022-07-01 20 s
+tx_qfq_full signal 25 2023-01-03 56 s
+tx_qfq_full signal 50 2023-07-12 111 s
+tx_qfq_full signal 75 2024-01-12 181 s
+tx_qfq_full signal 100 2024-07-23 241 s
+tx_qfq_full signal 125 2025-01-24 285 s
+tx_qfq_full signal 150 2025-08-04 330 s
+tx_qfq_full signal 175 2026-02-05 374 s
+tx_qfq_full signal 200 2026-08-14 429 s
+done tx_qfq_full 439 s; periods 207

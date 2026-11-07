@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-10-18T16:20:47",
+  "sample_size": 1500,
+  "fetched_ok": 1498,
+  "fetch_failed_or_missing": 2,
+  "panel_rows": 1761674,
+  "panel_codes": 1498,
+  "date_min": "2021-01-04",
+  "date_max": "2026-10-16",
+  "last_trading_day_expected": "2026-10-16",
+  "coverage_mean": 0.985,
+  "coverage_lt95": 115,
+  "stocks_with_dup_dates": 0,
+  "stocks_with_invalid_price": 3,
+  "stocks_with_ohlc_inconsistent": 0,
+  "stocks_with_extreme_returns": 255,
+  "stocks_stale_end": 137,
+  "volume_unit_unverified": 2,
+  "unit_changes_over_time": 0,
+  "volume_multiplier_counts": {
+    "-1.0": 2,
+    "0.01": 1,
+    "1.0": 1364,
+    "100.0": 131
+  },
+  "volume_multiplier_by_exchange": {
+    "BJ|-1.0": 1,
+    "BJ|1.0": 84,
+    "SH|-1.0": 1,
+    "SH|0.01": 1,
+    "SH|1.0": 617,
+    "SZ|1.0": 663,
+    "SZ|100.0": 131
+  },
+  "parquet_dir_MB": 86.7,
+  "panel_MB": 50.4,
+  "by_board": {
+    "沪主板": 470,
+    "创业板": 363,
+    "深主板(原中小板)": 258,
+    "深主板": 172,
+    "科创板": 149,
+    "北交所": 85,
+    "深其他": 1
+  },
+  "flag_counts": {
+    "超涨跌幅限制收益": 255,
+    "数据提前结束(停牌/退市/断更)": 137,
+    "覆盖率<95%": 115,
+    "无效价格": 3,
+    "成交量单位未能验证或随时间变化": 2,
+    "成交量单位异常(非股/手)": 1
+  }
+}

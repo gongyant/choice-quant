@@ -1,0 +1,56 @@
+{
+ "stocks": 1498,
+ "panel_bars": 1761682,
+ "events_total": 1272,
+ "events_by_cause": {
+  "additive_qfq_artifact": 1086,
+  "resumption_after_long_suspension(possible_no_limit)": 104,
+  "qfq_nonpositive_price(additive_qfq_artifact)": 72,
+  "unexplained_after_correction(manual_check)": 10
+ },
+ "events_by_found_by": {
+  "old_qfq_flag": 1158,
+  "old_qfq+corrected_scan": 103,
+  "corrected_scan_only": 11
+ },
+ "stocks_with_events": 266,
+ "stocks_old_flag_extreme": 255,
+ "old_extreme_records": 1227,
+ "coverage_classification": {
+  "ok": 1310,
+  "delisted_stock: last bar 10-70d before termination date (consistent with delisting-arrangement period / halt; normal)": 86,
+  "internal_gaps_suspensions": 44,
+  "delisted_stock: data ends at delisting (normal)": 41,
+  "listed_status_but_data_ends_early (long suspension or source stop; check)": 7,
+  "late_start_vs_calendar (source starts late)": 7,
+  "delisted_stock: data ends >70d before delist date (check: merger/halt/source gap)": 3
+ },
+ "stale_end_n": 137,
+ "coverage_lt95_n": 115,
+ "raw_nonpositive_traded_bars": 0,
+ "adj_nonpositive": 0,
+ "sources": {
+  "sina.stock_zh_a_daily(adjust='')": 1288,
+  "tencent.stock_zh_a_hist_tx(adjust='') [sina raw unavailable]": 210
+ },
+ "unit_unverified_codes": [
+  "920196",
+  "600317"
+ ],
+ "unit_mult_used_counts": {
+  "1.0": 1454,
+  "100.0": 43,
+  "0.01": 1
+ },
+ "factor_status": {
+  "ok": 1498
+ },
+ "cross_source": {
+  "stocks": 1412,
+  "close_equal_frac_mean": 1.0,
+  "close_equal_frac_min": 1.0
+ },
+ "corporate_action_rows": 6263,
+ "limit_up_bars": 29348,
+ "limit_dn_bars": 14841
+}

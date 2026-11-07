@@ -1,0 +1,21 @@
+{
+ "asof": "2026-10-21",
+ "n_latest": 1289,
+ "latest_period_counts": {
+  "2026-06-30": 1262,
+  "2026-09-30": 26,
+  "2025-09-30": 1
+ },
+ "pe_ann_vs_ttm_median_abs_rel_diff": 0.21617647058823536,
+ "pe_share_abs_diff_gt_20pct": 0.35143522110162917,
+ "pe_sign_disagree": 152,
+ "q3_2026_rows_total_in_fetch": 52,
+ "q3_2026_notice_le_1020": 26,
+ "q3_2026_notice_eq_1021": 7,
+ "q3_2026_notice_gt_1021": 19,
+ "q3_rule": "财报在公告日之后的第一个交易日才可用:10-21 当日只能使用公告日 <= 10-20 的报告;公告日 10-21 的报告不进入 10-21 的特征(检查 fin_raw_mats.notice_ord)",
+ "nan_handling_E2": "rank_feats: 缺失值在横截面排序后置为 0(即中位数)——视为'中性/未知',不是'差';LightGBM 未见到 NaN。",
+ "max_notice_used_on_1021": "2026-10-20",
+ "n_used_with_notice_ge_1021": 0,
+ "contaminated": false
+}
